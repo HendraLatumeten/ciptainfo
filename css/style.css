@@ -1,0 +1,93 @@
+.title {
+  border-bottom: 3px double #f6f6f6;
+  margin-bottom: 10px;
+}
+
+.title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
+  border-bottom: 5px double #89c236 !important;
+  margin-bottom: -4px !important;
+  display: inline-block !important;
+  padding: 0px 10px !important;
+  margin-left:15px !important;
+  margin-right:15px !important;
+}
+#page-title-icon {
+  background: #fff;
+  height: 48px;
+  width: 48px;
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+  padding: 4px;
+  margin-left: -16px;
+  margin-top: -18px;
+  position: relative;
+  z-index: 10;
+  float: left;
+  
+}
+#form-group1{
+  
+width: 1px;
+  margin: 20px auto;
+  border:1px solid #fff;
+  position: center;
+
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+
+  -webkit-box-shadow: 0px 5px 7px -3px rgba(122,122,122,1);
+  -moz-box-shadow: 0px 5px 7px -3px rgba(122,122,122,1);
+  box-shadow: 0px 5px 7px -3px rgba(122,122,122,1);
+  
+}
+
+
+#page-title-icon-inner {
+  background: #ffd35f;
+  height: 48px;
+  width: 48px;
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+  margin-left: -52px;
+  margin-top: -14px;
+  position: relative;
+  z-index: 30;
+  float: left;
+}
+
+#page-title {
+  background: url(../img/bg-grey2.png);
+  display: block;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 20;
+  border-bottom: 5px solid #f6f6f6;
+}
+
+#page-title-inner {
+  background: rgba(153,204,102, 0.9);
+  -webkit-box-shadow: inset 0px 0px 5px rgba(0,0,0,.25);
+  -moz-box-shadow: inset 0px 0px 5px rgba(0,0,0,.25);
+  box-shadow: inset 0px 0px 5px rgba(0,0,0,.25);
+  padding: 10px;
+}
+
+#page-title i {
+  margin: -6px 2px -5px -18px;
+  padding: 0px;
+}
+
+#page-title h2 {
+  display: inline-block;
+  font-family: "Yanone Kaffeesatz" !important;
+  color: #fff;
+  padding: 10px 20px 5px 20px;
+  font-size: 50px;
+}
+
+#page-title span {
+  color: #555;
+}

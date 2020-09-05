@@ -1,0 +1,42 @@
+/* MENU RATA KANAN */
+#menu-kanan{
+  margin-top: 30px;
+    height: 60px;
+  margin-bottom: 30px;
+  background-color: #89c236;
+}
+#menu-kanan ul {
+  float: right;
+  list-style: none;
+
+}
+#menu-kanan ul li {
+    text-align: center;
+  float: left;
+}
+#menu-kanan ul li a{
+    display: block;
+  color: #FFF;
+  text-decoration: none;
+  padding: 10px 20px;
+  line-height: 40px;
+  font-family: "Yanone Kaffeesatz" !important;
+  font-size: 25px;
+}
+#menu-kanan ul li a:hover{
+    background-color: #FFF;
+  color: #070707;
+}
+
+
+
+
+
+p{
+  margin-top:25px;
+  text-align: center
+}
+text{
+  font-family: "Yanone Kaffeesatz" !important;
+  font-size: 20px;
+}
