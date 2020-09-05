@@ -39,8 +39,9 @@ include "slide.php";
 					<img src="foto_produk/<?php echo $data['foto']; ?> " style="width:200px; height:200px" />
 					<div class="caption">
 						<h4><?php echo $data['nama']; ?></h4>
-						<h5>Rp.<?php echo number_format($data['harga'],2,",",".");?></h5><br>
-						<a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-warning">Detail</a> <a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-success">Beli </a>
+						<b>Harga Disesuaikan Dengan Pembelian</b>
+					<br>
+						<a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-warning">Lihat</a>
 					</div>
 				</div>
 			</div>

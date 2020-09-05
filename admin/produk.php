@@ -6,9 +6,9 @@
 			<th title="urutkan berdasarkan nomor">NO</th>
 			<th title="urutkan berdasarkan nomor">Id Produk</th>
 			<th title="urutkan berdasarkan nama">Nama Produk</th>
-				<th title="urutkan berdasarkan harga kategori">harga</th>
 			<th title="urutkan berdasarkan harga kategori">Kategori</th>
-			<th title="urutkan berdasarkan stok">Jumlah Stok</th>
+			<th title="urutkan berdasarkan harga kategori">Deskripsi</th>
+			<th title="urutkan berdasarkan stok">Foto Produk</th>
 			<th><center>Aksi</center></th>
 		</tr>
 	</thead>
@@ -20,9 +20,10 @@
 			<td><?php echo $nomor; ?></td>
 			<td><?php echo $pecah['id_produk']; ?></td>
 			<td><?php echo $pecah['nama']; ?></td>
-			<td><?php echo $pecah['harga']; ?></td>
 			<td><?php echo $pecah['kategori']; ?></td>
-			<td><?php echo $pecah['stok']; ?></td>
+			<td><?php echo $pecah['deskripsi']; ?></td>
+			<td><img src="../foto_produk/<?php echo $pecah['foto'] ?>" width="100" height="100"></td>
+			
 			<td><center>
 				<a href="index.php?halaman=detail_produk&id=<?php echo $pecah['id_produk']; ?>" class="btn btn-primary" title="Lihat" >Detail</a>
 				<a href="index.php?halaman=hapus_produk&id=<?php echo $pecah['id_produk']; ?>" class="btn btn-danger" title="Hapus"  onclick="return confirm('yakin ingin hapus data?')">Hapus</a>

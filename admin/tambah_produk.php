@@ -54,21 +54,17 @@
 </form>
 <?php
 	if (isset($_POST['simpan'])) {
-		if ($_POST[kategori]==1) {
+		if ($_POST['kategori']==1) {
 			echo "<script>alert('harap isi kategori');</script>";
-		} elseif ($_POST[nama]=="") {
+		} elseif ($_POST['nama']=="") {
 			echo "<script>alert('harap isi nama');</script>";
-		} elseif ($_POST[harga]=="") {
-			echo "<script>alert('harap isi harga beli produk');</script>";
-
 		} else {
 			$nama = $_FILES['foto']['name'];
 			$lokasi = $_FILES['foto']['tmp_name'];
-			$harga_jual_produk = $_POST[harga_beli]+($_POST[harga_beli]*15/100);
 			move_uploaded_file($lokasi, "../foto_produk/".$nama);
 			
-			$koneksi->query("INSERT INTO produk (nama,kategori,harga,stok,deskripsi,foto) VALUES ('$_POST[nama]','$_POST[kategori]','$_POST[harga]','$_POST[stok]','$_POST[deskripsi]','$nama')");
-
+			$koneksi->query("INSERT INTO produk (nama,kategori,deskripsi,foto) VALUES ('$_POST[nama]','$_POST[kategori]','$_POST[deskripsi]','$nama')");
+			
 			echo "<script>alert('Data Berhasil Ditambahkan');</script>";
 			echo "<script>location='index.php?halaman=produk';</script>";
 		}
