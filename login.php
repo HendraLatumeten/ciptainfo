@@ -69,15 +69,22 @@ include "menu.php";
 		$query = mysqli_query($koneksi, "SELECT * FROM pelanggan 
 						WHERE email='$email' AND password='$pass'");
 		$valid = $query->num_rows;
+	
 
 	if($valid==1)
 	{
 		//anda login
 		$akun = $query->fetch_assoc();
+		// var_dump($akun['aktif']);die;
+		if ($akun['aktif'] < '1') {
+			echo "<script>alert ('Anda belum melakukan aktivasi akun, silahkan periksa kembali email anda!');</script>";
+		}else{
 			$_SESSION["pelanggan"] = $akun;
 			echo "<script>alert ('Login Berhasil');</script>";
 			echo "<script>location='index.php?halaman=home';</script>";
-		}else{
+		}
+			
+	}else{
 			echo "<script>alert ('Username dan Password anda Salah!!!');</script>";
 		}
 	}

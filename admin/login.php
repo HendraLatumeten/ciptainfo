@@ -1,7 +1,8 @@
 <?php 
 session_start();
 //koneksi ke database
-$koneksi = new mysqli("localhost","root","","ciptainfo");
+include('../koneksi.php')
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +74,7 @@ $koneksi = new mysqli("localhost","root","","ciptainfo");
                             $pecah = $ambil->fetch_assoc();
                         	$yangcocok = $ambil->num_rows;
                         	if ($yangcocok==1) {
-                                $_SESSION['admin']=$pecah['id_admin'];
+                                $_SESSION['admin'] = $pecah['id_admin'];
                         		echo "<br>";
                         		echo "<div class='alert alert-info'>Login Sukses</div>";
                         		echo "<meta http-equiv='refresh' content='1;url=index.php'>";
@@ -81,7 +82,7 @@ $koneksi = new mysqli("localhost","root","","ciptainfo");
                         	else {
                         		echo "<br>";
                         		echo "<div class='alert alert-danger'>Login Gagal</div>";
-                        		//echo "<meta http-equiv='refresh' content='1;url=login.php'>";
+                        		echo "<meta http-equiv='refresh' content='1;url=login.php'>";
                         	}
                         }
 

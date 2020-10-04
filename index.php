@@ -36,9 +36,9 @@ include "slide.php";
 			?>
 			<div class="col-md-3">
 				<div class="thumbnail">
-					<img src="foto_produk/<?php echo $data['foto']; ?> " style="width:200px; height:200px" />
+					<img src="foto_produk/<?php echo $data['foto_produk']; ?> " style="width:200px; height:200px" />
 					<div class="caption">
-						<h4><?php echo $data['nama']; ?></h4>
+						<h4><?php echo $data['nama_produk']; ?></h4>
 						<b>Harga Disesuaikan Dengan Pembelian</b>
 					<br>
 						<a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-warning">Lihat</a>
@@ -54,92 +54,6 @@ include "slide.php";
 	</div>
 </section>
 
-<section class="konten">
-	<div class="container">
-		<div class ="content">
-		<br><center><h1>Plafon untuk Rumah</h1></center><br>
-		<div class="row">
-
-			<?php
-			$sql = mysqli_query($koneksi, "SELECT * FROM produk ORDER BY id_produk DESC limit 12");
-			while($data = mysqli_fetch_array($sql)){
-			?>
-			<div class="col-md-3">
-				<div class="thumbnail">
-					<img src="foto_produk/<?php echo $data['foto']; ?> " style="width:200px; height:200px" />
-					<div class="caption">
-						<h4><?php echo $data['nama']; ?></h4>
-						<h5>Rp.<?php echo number_format($data['harga'],2,",",".");?></h5><br>
-						<a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-warning">Detail</a> <a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-success">Beli </a>
-					</div>
-				</div>
-			</div>
-
- 			<?php   
-			}
-			?>
-		</div>
-		</div>
-	</div>
-</section>
-
-<section class="konten">
-	<div class="container">
-		<div class ="content">
-		<br><center><h1>Jenis – jenis Kayu Pelapis Dinding</h1></center><br>
-		<div class="row">
-
-			<?php
-			$sql = mysqli_query($koneksi, "SELECT * FROM produk ORDER BY id_produk DESC limit 12");
-			while($data = mysqli_fetch_array($sql)){
-			?>
-			<div class="col-md-3">
-				<div class="thumbnail">
-					<img src="foto_produk/<?php echo $data['foto']; ?> " style="width:200px; height:200px" />
-					<div class="caption">
-						<h4><?php echo $data['nama']; ?></h4>
-						<h5>Rp.<?php echo number_format($data['harga'],2,",",".");?></h5><br>
-						<a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-warning">Detail</a> <a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-success">Beli </a>
-					</div>
-				</div>
-			</div>
-
- 			<?php   
-			}
-			?>
-		</div>
-		</div>
-	</div>
-</section>
-
-<section class="konten">
-	<div class="container">
-		<div class ="content">
-		<br><center><h1>Jenis lantai kayu</h1></center><br>
-		<div class="row">
-
-			<?php
-			$sql = mysqli_query($koneksi, "SELECT * FROM produk ORDER BY id_produk DESC limit 12");
-			while($data = mysqli_fetch_array($sql)){
-			?>
-			<div class="col-md-3">
-				<div class="thumbnail">
-					<img src="foto_produk/<?php echo $data['foto']; ?> " style="width:200px; height:200px" />
-					<div class="caption">
-						<h4><?php echo $data['nama']; ?></h4>
-						<h5>Rp.<?php echo number_format($data['harga'],2,",",".");?></h5><br>
-						<a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-warning">Detail</a> <a href="detail_produk.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-success">Beli </a>
-					</div>
-				</div>
-			</div>
-
- 			<?php   
-			}
-			?>
-		</div>
-		</div>
-	</div>
-</section>
       		
 <?php
 include "footer.php";

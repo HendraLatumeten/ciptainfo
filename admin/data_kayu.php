@@ -12,8 +12,7 @@ function rupiah($angka){
 		<tr>
 			<th title="urutkan berdasarkan nomor">NO</th>
 			<th title="urutkan berdasarkan nama Kayu">Nama Kayu</th>
-			<th title="urutkan berdasarkan harga Utama">Harga Utama</th>
-            <th title="urutkan berdasarkan harga Partisi">Harga Partisi</th>
+			<th title="urutkan berdasarkan harga Utama">Harga</th>
 			<th title="urutkan berdasarkan harga kategori">Stok</th>
 			<th title="urutkan berdasarkan harga kategori">Satuan</th>
 			<th><center>Aksi</center></th>
@@ -26,8 +25,7 @@ function rupiah($angka){
 		<tr>
 			<td><?php echo $nomor; ?></td>
 			<td><?php echo $pecah['nama_kayu']; ?></td>
-			<td><?php echo "Rp".number_format($pecah['harga_utama'],2,',','.'); ?></td>
-			<td><?php echo "Rp".number_format($pecah['harga_partisi'],2,',','.'); ?></td>
+			<td><?php echo "Rp".number_format($pecah['harga'],2,',','.'); ?></td>
 			<td><?php echo $pecah['stok']; ?></td>
 			<td><?php echo $pecah['satuan']; ?></td>
 			<td><center>

@@ -63,7 +63,7 @@
 			$lokasi = $_FILES['foto']['tmp_name'];
 			move_uploaded_file($lokasi, "../foto_produk/".$nama);
 			
-			$koneksi->query("INSERT INTO produk (nama,kategori,deskripsi,foto) VALUES ('$_POST[nama]','$_POST[kategori]','$_POST[deskripsi]','$nama')");
+			$koneksi->query("INSERT INTO produk (nama_produk,kategori_produk,deskripsi_produk,foto_produk) VALUES ('$_POST[nama]','$_POST[kategori]','$_POST[deskripsi]','$nama')");
 			
 			echo "<script>alert('Data Berhasil Ditambahkan');</script>";
 			echo "<script>location='index.php?halaman=produk';</script>";

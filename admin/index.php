@@ -73,7 +73,7 @@ if (!isset($_SESSION['admin'])) {
         <?php $ambil=$koneksi->query("SELECT * FROM admin  WHERE id_admin =$admin"); ?>
         <?php while ($pecah=$ambil->fetch_assoc()) {?>
         <tr>
-            <td><h5> <?php echo $pecah['username']; ?></td>
+            <td><h5> <?php echo $pecah['fullname']; ?></td>
             </h5></td>
         </tr>
 
@@ -91,6 +91,7 @@ if (!isset($_SESSION['admin'])) {
                         <p>Home</p>
                     </a>
                 </li>
+
                 <li <?php if (isset($_GET['halaman'])) {
                     if ($_GET['halaman']=="pelanggan") {
                         echo "class='active'";
@@ -101,9 +102,7 @@ if (!isset($_SESSION['admin'])) {
                         <p>pelanggan</p>
                     </a>
                 </li>
-                
-                    </a>
-                </li>
+
                
                 <li <?php if (isset($_GET['halaman'])) {
                     if ($_GET['halaman']=="pembelian") {
@@ -115,14 +114,31 @@ if (!isset($_SESSION['admin'])) {
                         <p>Pembelian</p>
 
                     </a>
-                <li <?php if (!isset($_GET['halaman'])) {
+                </li>
+
+                <!-- <li <?php if (!isset($_GET['halaman'])) {
+                   //. echo "class='active'";
+                   if ($_GET['halaman']=="data_kayu") {
                     echo "class='active'";
+                     }
                 } ?> >
                     <a href="index.php?halaman=data_kayu">
                         <i class="pe-7s-server"></i>
                         <p>Data Kayu</p>
                     </a>
+                </li> -->
+
+                <li <?php if (isset($_GET['halaman'])) {
+                    if ($_GET['halaman']=="data_kayu") {
+                        echo "class='active'";
+                    }
+                } ?>>
+                    <a href="index.php?halaman=data_kayu">
+                        <i class="pe-7s-server"></i>
+                        <p>Data Kayu</p>
+                    </a>
                 </li>
+                
                 <li <?php if (isset($_GET['halaman'])) {
                     if ($_GET['halaman']=="produk") {
                         echo "class='active'";
@@ -178,11 +194,12 @@ if (!isset($_SESSION['admin'])) {
                     </button>
                 </div>
                 <div class="collapse navbar-collapse">
-
+                <?php echo date('l, d-m-Y h:i:s a')?>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="index.php?halaman=logout">
                                 <p>Log out</p>
+                                
                             </a>
                         </li>
 						<li class="separator hidden-lg"></li>

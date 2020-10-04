@@ -25,7 +25,7 @@
              <?php if (isset($_SESSION["pelanggan"])):?>
           <li><a href="produk.php">Produk Custom</a></li>
           <li><a href="profil.php" >Profil</a></li>
-          <li><a href="riwayat.php" >Riwayat</a></li>
+          <li><a href="status_pembelian.php" >Status Pembelian</a></li>
           <li><a href="logout.php">Logout</a></li>
              <?php else: ?>
           <li><a href="login.php">Login</a></li>

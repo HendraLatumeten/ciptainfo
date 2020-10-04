@@ -19,10 +19,10 @@
 		<tr>
 			<td><?php echo $nomor; ?></td>
 			<td><?php echo $pecah['id_produk']; ?></td>
-			<td><?php echo $pecah['nama']; ?></td>
-			<td><?php echo $pecah['kategori']; ?></td>
-			<td><?php echo $pecah['deskripsi']; ?></td>
-			<td><img src="../foto_produk/<?php echo $pecah['foto'] ?>" width="100" height="100"></td>
+			<td><?php echo $pecah['nama_produk']; ?></td>
+			<td><?php echo $pecah['kategori_produk']; ?></td>
+			<td><?php echo $pecah['deskripsi_produk']; ?></td>
+			<td><img src="../foto_produk/<?php echo $pecah['foto_produk'] ?>" width="100" height="100"></td>
 			
 			<td><center>
 				<a href="index.php?halaman=detail_produk&id=<?php echo $pecah['id_produk']; ?>" class="btn btn-primary" title="Lihat" >Detail</a>

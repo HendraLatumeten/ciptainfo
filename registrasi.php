@@ -45,8 +45,8 @@ include "menu.php";
             <td><label>Jenis Kelamin</label></td>
             <td>:</td>
             <br>
-            <td><input type="radio" name="jk" value="Laki-laki" checked>Laki-laki
-            <input type="radio" name="jk" value="Perempuan">Perempuan
+            <td><input type="radio" name="jk" value="L" checked>Laki-laki
+            <input type="radio" name="jk" value="P">Perempuan
             </td>
       </tr>
 		<br>
@@ -95,6 +95,7 @@ include "menu.php";
 		echo "<script>location='registrasi.php';</script>";
 	}else{
 		$sql = mysqli_query ($koneksi, "INSERT INTO pelanggan (nama,jk,tlp,pekerjaan,alamat,email,password,token,aktif) VALUES ('$nama','$jk','$tlp','$pekerjaan','$alamat','$email','$pass','$token','0')"); 
+		// var_dump($koneksi);die;
 		if ($koneksi);
 		include("mail.php");
 		echo "<script>alert('terima kasih sudah daftar,silahkan cek email anda untuk aktivasi login ') </script>";

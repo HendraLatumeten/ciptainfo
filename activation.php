@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Mari Belajar Coding</title>
+  <title>Cipta Info</title>
   <meta name="author" content="https://www.maribelajarcoding.com/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,11 +16,11 @@
     <?php
          include "koneksi.php";
          $token=$_GET['t'];
-         $sql_cek=mysqli_query($koneksi,"SELECT * FROM customer WHERE token='".$token."' and aktif='0'");
+         $sql_cek=mysqli_query($koneksi,"SELECT * FROM pelanggan WHERE token='".$token."' and aktif='0'");
          $jml_data=mysqli_num_rows($sql_cek);
          if ($jml_data>0) {
              //update data users aktif
-             mysqli_query($koneksi,"UPDATE customer SET aktif='1' WHERE token='".$token."' and aktif='0'");
+             mysqli_query($koneksi,"UPDATE pelanggan SET aktif='1' WHERE token='".$token."' and aktif='0'");
              echo '<div class="alert alert-success">
                         Akun anda sudah aktif, silahkan <a href="login.php">Login</a>
                         </div>';

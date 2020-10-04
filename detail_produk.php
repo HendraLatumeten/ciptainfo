@@ -3,6 +3,86 @@
 include "header.php";
 include "menu.php";
 ?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {box-sizing: border-box;}
+
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 40px;
+  height: 40px;
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 500px;
+  height: 240px;
+}
+</style>
+<script>
+function imageZoom(imgID, resultID) {
+  var img, lens, result, cx, cy;
+  img = document.getElementById(imgID);
+  result = document.getElementById(resultID);
+  /*create lens:*/
+  lens = document.createElement("DIV");
+  lens.setAttribute("class", "img-zoom-lens");
+  /*insert lens:*/
+  img.parentElement.insertBefore(lens, img);
+  /*calculate the ratio between result DIV and lens:*/
+  cx = result.offsetWidth / lens.offsetWidth;
+  cy = result.offsetHeight / lens.offsetHeight;
+  /*set background properties for the result DIV:*/
+  result.style.backgroundImage = "url('" + img.src + "')";
+  result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+  /*execute a function when someone moves the cursor over the image, or the lens:*/
+  lens.addEventListener("mousemove", moveLens);
+  img.addEventListener("mousemove", moveLens);
+  /*and also for touch screens:*/
+  lens.addEventListener("touchmove", moveLens);
+  img.addEventListener("touchmove", moveLens);
+  function moveLens(e) {
+    var pos, x, y;
+    /*prevent any other actions that may occur when moving over the image:*/
+    e.preventDefault();
+    /*get the cursor's x and y positions:*/
+    pos = getCursorPos(e);
+    /*calculate the position of the lens:*/
+    x = pos.x - (lens.offsetWidth / 2);
+    y = pos.y - (lens.offsetHeight / 2);
+    /*prevent the lens from being positioned outside the image:*/
+    if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
+    if (x < 0) {x = 0;}
+    if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
+    if (y < 0) {y = 0;}
+    /*set the position of the lens:*/
+    lens.style.left = x + "px";
+    lens.style.top = y + "px";
+    /*display what the lens "sees":*/
+    result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+  }
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /*get the x and y positions of the image:*/
+    a = img.getBoundingClientRect();
+    /*calculate the cursor's x and y coordinates, relative to the image:*/
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /*consider any page scrolling:*/
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+</script>
 
     <div id="page-title">
 
@@ -11,7 +91,7 @@ include "menu.php";
             <!-- start: Container -->
             <div class="container">
 
-                <h2>Detail Produk</h2>
+                <h2>View Produk</h2>
 
             </div>
             <!-- end: Container  -->
@@ -34,67 +114,37 @@ $jsArray = "var hrg_brg = new Array();\n";
 
 <section class="kontent">
     <div class="container" class="deskripsi">
+    <div class="row">
+    <center><h2>Video Produk</h2></center>
+        <div class='text-center'>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/2c6HDkcJ0LI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br>
+    </div>
         <div class="row">
+        <center><h2>Foto Produk</h2></center>
             <div class="col-md-6">
-                <img src="foto_produk/<?php echo $data['foto']; ?>" alt="" class="img-responsive" style="width:400px; height:300px">
-            </div>
-            <div class="col-md-6">
-                
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                     <h5 class="display-4">Detail Pemesanan</h5>
-                    <div class="form-grup">
-                            <label>Jenis Kayu</label>
-                        <select name="kd_brg" onchange="changeValue(this.value)" class="form-control">
-		            <option>- Pilih -</option>
-		            <?php if(mysqli_num_rows($barang)) {?>
-		                <?php while($row_brg= mysqli_fetch_array($barang)) {?>
-		                    <option value="<?php echo $row_brg["id_kayu"]?>"> <?php echo $row_brg["nama_kayu"]?> </option>
-		                <?php $jsArray .= "hrg_brg['" . $row_brg['id_kayu'] . "'] = {hrg:'" . addslashes($row_brg['harga_partisi']) . "'};\n"; } ?>
-                    <?php
-                  
-                
-                } ?>
-		        </select>
-                    </div>
-                    <div class="form-grup">
-                        <div class="col-12">
-                            <div class="col-6">
-                            <?  echo $jsArray;?>
-                                <b>Panjang</b><input type="number" id="panjang" class="form-control">
-                            </div>
-                            <div class="col-6">
-                                <b>Lebar</b><input type="number" id="lebar" class="form-control">
-                             </div>
-                        </div>
-                    </div>
-                    <br>
-                    <input type='button' class='btn-primary center-block' name='' onclick= hitung(); value='Cek Harga' >
-                    <br>
-                    <input type="hidden" class="form-control" name="hrg" id="hrg" value="0">
-                  <b>Harga Rp. <input type="text" class="form-control" name="total" id="total" value="" readonly="readonly"></b>
+        
+                <div class="img-zoom-container">
+                    <img id="myimage" src="foto_produk/<?php echo $data['foto_produk']; ?>" width="500" height="240" alt="Girl">
+                   
                 </div>
-            </div>
 
-                <?php 
-
-                if (isset($_POST["beli"]))
-                {
-                    $jumlah = $_POST["jumlah"];
-
-                    $_SESSION["keranjang"][$id_produk] = $jumlah;
-                    
-                    echo "<script>alert('Produk Berhasil Ditambahkan Ke Keranjang');</script>";
-                    echo "<script>location='keranjang.php';</script>";
-                }
-                ?>
             </div>
-            </div><br>
-            <div class="deskripsi"> 
-            <h3><b><?php echo $data["nama"]?></b></h3><br><br>
-                <h4>Deskripsi Produk :</h4><br>
-                <h4><?php echo $data["deskripsi"];?></h4>
+            <div class="col-md-6">
+            <div id="myresult" class="img-zoom-result"></div>
             </div>
+            <br>
+            <div class="container">
+            &#8226; <b>Produk : </b><i><?php echo $data['nama_produk']; ?></i><br>
+            &#8226; <b>Kategori : </b><i><?php echo $data['kategori_produk']; ?></i><br>
+            &#8226; <b>Deskripsi : </b><i><?php echo $data['deskripsi_produk']; ?></i><br>
+            </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <a href="index.php" class="btn btn-md btn-warning"> <- Kembali</a> <a href="detail_pemesanan.php?id_produk=<?php echo $data['id_produk'];?>" class="btn btn-md btn-success">Cek Harga</a>
         </div>
     </div>
 </section>
@@ -129,3 +179,7 @@ $jsArray = "var hrg_brg = new Array();\n";
 <?php
 include "footer.php";
 ?>
+                <script>
+// Initiate zoom effect:
+imageZoom("myimage", "myresult");
+</script>

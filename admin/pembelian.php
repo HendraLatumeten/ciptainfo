@@ -18,9 +18,13 @@
 		<tr>
 			<td><?php echo $nomor; ?></td>
 			<td><?php echo $pecah['id_pembelian']; ?></td>
-			<td><?php echo $pecah['nama_customer']; ?></td>
+			<td><?php echo $pecah['nama']; ?></td>
 			<td><?php echo $pecah['tanggal_pembelian']; ?></td>
-			<td><?php echo $pecah['status_pembelian']; ?></td>
+			<td><?php 
+				if ($pecah['status_pembelian'] == "1") {
+					echo  "Menunggu Konfirmasi";
+				}
+			?></td>
 			<td>
 				<a href="index.php?halaman=detail_beli&id=<?php echo $pecah['id_pembelian']; ?>">Detail</a>
 			</td>

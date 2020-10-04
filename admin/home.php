@@ -18,10 +18,8 @@ $kayu = $ambiljumlahkayu->num_rows;
 $ambiljumlahpelanggan = $koneksi->query("SELECT * FROM pelanggan WHERE id_pelanggan");
 $pelanggan = $ambiljumlahpelanggan->num_rows;
 
-
-
-// $ambiljumlahproduk = $koneksi->query("SELECT * FROM supplier WHERE id_supplier");
-// $supplier = $ambiljumlahproduk->num_rows;
+$ambiljumlahproduk = $koneksi->query("SELECT * FROM produk WHERE id_produk");
+$produk = $ambiljumlahproduk->num_rows;
 
 
 
@@ -37,7 +35,7 @@ $pelanggan = $ambiljumlahpelanggan->num_rows;
 	<h3>Info Data CIPTAINFO : </h3>
   <h4 class="alert alert-info"><b><?php echo $kayu; ?></b> DATA KAYU</h4>
   <h4 class="alert alert-info"><b><?php echo $pelanggan; ?></b> DATA PELANGGAN</h4>
-	<!-- <h4 class="alert alert-info"><b><?php echo $supplier; ?></b> JUMLAH SUPPLIER</h4> -->
+  <h4 class="alert alert-info"><b><?php echo $produk; ?></b> DATA PRODUK</h4>
   <!-- <h4 class="alert alert-info"><b><?php echo $penjualan; ?></b> DATA PENJUALAN</h4> -->
   <!-- <h4 class="alert alert-info"><b><?php echo $pembelian; ?></b> DATA PEMBELIAN</h4> -->
   <!-- <h4 class="alert alert-info"><b><?php echo $pembelian; ?></b> DATA PEMBELIAN</h4> -->

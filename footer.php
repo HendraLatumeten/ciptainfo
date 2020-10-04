@@ -44,7 +44,8 @@
       
     </ul>
   </div>
-
+  <script src="js/jquery_new.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery-1.8.2.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/flexslider.js"></script>
