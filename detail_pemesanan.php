@@ -174,7 +174,7 @@ if (isset($_POST["beli"]))
         $ongkir = 2500000;
    }
    $totalharga = $ongkir + $total1 ;
-  
+ 
    $tgl = date('d-m-Y');
 
    //pembelian
