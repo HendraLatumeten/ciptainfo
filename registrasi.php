@@ -69,38 +69,56 @@ include "menu.php";
         <td><label>Password</label></td>
         <td><input name="password" type="password" class="form-control" minlength="6"  required></td>
       </tr>
+	  <br>
+	  <div class="g-recaptcha" data-sitekey="6LfyB9gZAAAAAFKSSYcDeSL60lDIoJdg7WzDcAeb"></div>
      <br>
       <button class="btn btn-primary" type="submit" name="insert">Daftar</button>
 
 <?php
 	if (isset($_POST["insert"])) {
 
-	$nama = $_POST["nama"];
-	$jk = $_POST['jk'];
-	$tlp = $_POST['tlp'];
-	$pekerjaan = $_POST["pekerjaan"];
-	$alamat = $_POST['alamat'];
-	$email = $_POST["email"];
-	$pass = md5($_POST["password"]);
-	//token
-	$token=hash('sha256', md5(date('Y-m-d'))) ;
-	//
-	
+		$secret_key = "6LfyB9gZAAAAAFQOZdGfs8bb2iByqaVEH7V4T75U";
+		$verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']);
+		$response = json_decode($verify);
+		//
 
-	$sql = mysqli_query ($koneksi, "SELECT * FROM pelanggan WHERE email='$email'");
-	$valid = $sql->num_rows;
-	if ($valid==1)
-	{
-		echo "<script>alert ('Email telah digunakan');</script>";
-		echo "<script>location='registrasi.php';</script>";
-	}else{
-		$sql = mysqli_query ($koneksi, "INSERT INTO pelanggan (nama,jk,tlp,pekerjaan,alamat,email,password,token,aktif) VALUES ('$nama','$jk','$tlp','$pekerjaan','$alamat','$email','$pass','$token','0')"); 
-		// var_dump($koneksi);die;
-		if ($koneksi);
-		include("mail.php");
-		echo "<script>alert('terima kasih sudah daftar,silahkan cek email anda untuk aktivasi login ') </script>";
-        echo "<script>location ='login.php';</script>";
-}	
+		$nama = $_POST["nama"];
+		$jk = $_POST['jk'];
+		$tlp = $_POST['tlp'];
+		$pekerjaan = $_POST["pekerjaan"];
+		$alamat = $_POST['alamat'];
+		$email = $_POST["email"];
+		$pass = md5($_POST["password"]);
+		//token
+		$token=hash('sha256', md5(date('Y-m-d'))) ;
+		//
+		
+
+		
+		if($response->success){ // Jika proses validasi captcha berhasil
+			$sql = mysqli_query ($koneksi, "SELECT * FROM pelanggan WHERE email='$email'");
+				$valid = $sql->num_rows;
+				if ($valid==1)
+				{
+					echo "<script>alert ('Email telah digunakan');</script>";
+					echo "<script>location='registrasi.php';</script>";
+				}else{
+					$sql = mysqli_query ($koneksi, "INSERT INTO pelanggan (nama,jk,tlp,pekerjaan,alamat,email,password,token,aktif) VALUES ('$nama','$jk','$tlp','$pekerjaan','$alamat','$email','$pass','$token','0')"); 
+					// var_dump($koneksi);die;
+					if ($koneksi);
+					include("mail.php");
+					echo "<script>alert('terima kasih sudah daftar,silahkan cek email anda untuk aktivasi login ') </script>";
+					echo "<script>location ='login.php';</script>";
+			}	
+
+
+		}else{ // Jika captcha tidak valid
+			echo "<script>alert('Maaf!,Anda Adalah Robot') </script>";
+			echo "<script>location ='login.php';</script>";
+		}
+
+
+	
   
 }	
 ?>
@@ -122,12 +140,14 @@ include "menu.php";
 			<!--end: Row-->
 	
 		</div>
+	
 		<!--end: Container-->
 				
 		<!--start: Container -->
     	<?php
 include "footer.php";
 ?>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </body>
 </html>	

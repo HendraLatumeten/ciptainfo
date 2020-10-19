@@ -13,6 +13,7 @@ if(!isset($_SESSION["pelanggan"]))
 	exit();
 }
 
+
 ?>
 
 <div id="page-title">
@@ -52,12 +53,13 @@ if(!isset($_SESSION["pelanggan"]))
 				<?php
 				$nomor=1;
 				$id_pelanggan = $_SESSION["pelanggan"]['id_pelanggan'];
-
+	
 				$ambil = $koneksi->query("SELECT * FROM pembelian AS a JOIN pembayaran AS b ON a.id_pembelian=b.id_pembelian WHERE a.id_pelanggan='$id_pelanggan' ORDER BY a.id_pembelian DESC");
-				
+			
 				while ($pecah = $ambil->fetch_assoc()){
 					
 					$sisa = $pecah['total_harga'] - $pecah['jumlah'];
+
 				?>
 				
 				<tr>
@@ -78,9 +80,9 @@ if(!isset($_SESSION["pelanggan"]))
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
 					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Info</a>
-					<?php } elseif ($pecah['status_pembelian']=="Sedang Diproses") { ?>
+					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
-					<?php } elseif ($pecah['status_pembelian']=="pending") { ?>
+					<?php } elseif ($pecah['status_pembelian']=="4") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
 						<a href="hapus_pesanan.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-danger">Batalkan</a>
 					</td>
