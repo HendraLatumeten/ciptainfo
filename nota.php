@@ -127,7 +127,7 @@ function rupiah($angka){
 						<td><?php echo $pecah['nama_kayu']; ?></td>
 						<td><?php echo rupiah($pecah['harga']); ?> m2</td>
 						<td><?php echo $pecah['panjang'].'X'.$pecah['lebar']; ?> M</td>
-						<td><?php echo rupiah($pecah['ongkir']); ?></td>
+						<td><?php echo $pecah['ongkir']; ?></td>
 						<td><i>Sudah Termasuk Harga Kayu </i></td>
 						<td><?php echo rupiah($pecah['total_harga']); ?></td>
 					</tr>

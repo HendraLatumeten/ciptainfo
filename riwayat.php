@@ -78,6 +78,9 @@ if(!isset($_SESSION["pelanggan"]))
 					<td>
 						<?php if ($pecah['status_pembelian']=="1") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+						Pembayaran
+						</button>
 					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Info</a>
 					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
@@ -95,6 +98,56 @@ if(!isset($_SESSION["pelanggan"]))
 	</div>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  <div class="container">
+	<h2>Konfirmasi Pembayaran</h2>
+	<p>Kirim Bukti Pembarayan Di sini</p>
+	<div class="alert alert-danger">Pembayaran Tahap Awal <b>(DP)</b> 15% Dari Total Harga! <strong><?php echo rupiah($harga)?></strong>
+	</div>
+	
+	<div class="alert alert-success">Total Tagihan Anda <strong><?php echo rupiah($bayar)?></strong>
+	<strong>     || BANK BCA 124-020201-2121  CIPTA INFO</strong></div>
+
+	<form method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label>Nama Penyetor</label>
+			<input type="text" class="form-control" name="nama">
+		</div>
+		<div class="form-group">
+			<label>Bank</label>
+			<input type="text" class="form-control" name="bank">
+		</div>
+		<div class="form-group" data-toggle="tooltip" data-placement="left" title="Jumlah Harus Sesuai!">
+			<label>Jumlah</label>
+			<input class="form-control" type="number" name="jumlah">
+		</div>
+
+		<div class="form-group">
+			<label>FOTO Bukti</label>
+			<input type="file" class="form-control" name="bukti" required="Harus Diinput">
+			<p class="text-danger">*foto bukti harus JPG max 2MB</p>
+		</div>
+		<button class="btn btn-success" name="kirim">Kirim</button>
+	</form>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php
 include "footer.php";

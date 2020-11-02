@@ -320,7 +320,67 @@ if (!isset($_SESSION['admin'])) {
 
     </div>
 </div>
-
+<!-- Modal  detail pembayaran -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><b>Pembayaran 1</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <div id="caption"></div>
+</div>
+        <div class="zoom">
+            <img id="myimage" src="../bukti_pembayaran/<?php echo $bukti['bukti']; ?>" width="100">
+        </div>
+      <table class="table">
+				<tr>
+					<td>Nama Transfer</td>
+					<td>:</td>
+                    <td>
+                        <b>
+						<?php
+                        
+							echo $bukti['nama'];
+						?>
+                        </b>
+					</td>
+				</tr>
+                <tr>
+					<td>Bank</td>
+					<td>:</td>
+                    <td>
+                        <b>
+						<?php
+							echo $bukti['bank'];
+						?>
+                        </b>
+					</td>
+				</tr>
+                <tr>
+					<td>Tanggal</td>
+					<td>:</td>
+                    <td>
+                    <b>
+						<?php
+							echo $bukti['tanggal'];
+						?>
+                    </b>
+					</td>
+				</tr>
+		</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
     <!--   Core JS Files   -->
@@ -346,3 +406,22 @@ if (!isset($_SESSION['admin'])) {
     <script type="text/javascript" src="datatabel/media/js/jquery.dataTables.min.js"></script>
 
 </html>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.zoom {
+  padding: 50px;
+  transition: transform .2s;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
+}
+</style>
