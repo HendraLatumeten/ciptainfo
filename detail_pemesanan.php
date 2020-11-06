@@ -172,7 +172,9 @@ if (isset($_POST["beli"]))
         $ongkir = 3000000;
    }else if ($prov == "33") { //jawa tengah
         $ongkir = 2500000;
-   }
+   }else if ($prov == "31") { //DKI Jakarta
+        $ongkir = 2000000;
+    }
    $totalharga = $ongkir + $total1 ;
  
    $tgl = date('d-m-Y');

@@ -381,6 +381,116 @@ if (!isset($_SESSION['admin'])) {
     </div>
   </div>
 </div>
+
+<!-- verifikasi pembayaran -->
+<div class="modal fade" id="verifikasiModal" tabindex="-1" role="dialog" aria-labelledby="verifikasiModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><b>Verifikasi Pembayaran 1</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <div id="caption"></div>
+</div>
+        <div class="zoom">
+            <img id="myimage" src="../bukti_pembayaran/<?php echo $bukti['bukti']; ?>" width="100">
+        </div>
+      <table class="table">
+				<tr>
+					<td>Dibayar</td>
+					<td>:</td>
+                    <td>
+                        <b>
+						<?php
+                        
+							echo rupiah($bukti['jumlah']);
+						?>
+                        </b>
+					</td>
+				</tr>
+                <tr>
+					<td>Yang Harus Dibayar</td>
+					<td>:</td>
+                    <td>
+                        <b>
+						<?php
+							echo "<h3>".rupiah($bayar)."</h3>";
+						?>
+                        </b>
+					</td>
+				</tr>
+                <tr>
+					<td>Nama Pelanggan</td>
+					<td>:</td>
+                    <td>
+                    <b>
+						<?php
+							echo $detail['nama'];
+						?>
+                    </b>
+					</td>
+				</tr>
+                <tr>
+					<td>Kontak</td>
+					<td>:</td>
+                    <td>
+                    <b>
+						<?php
+							echo $detail['tlp'];
+						?>
+                    </b>
+					</td>
+				</tr>
+                <tr>
+					<td>Email</td>
+					<td>:</td>
+                    <td>
+                    <b>
+						<?php
+							echo $detail['email'];
+						?>
+                    </b>
+					</td>
+				</tr>
+		</table>
+      </div>
+      
+      <div class="modal-footer">
+      <?
+        include('pembayaran1_batal.php');
+      ?>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- //proses batalkan -->
+<!-- Modal -->
+<div class="modal fade" id="batalkanModal" tabindex="-1" role="dialog" aria-labelledby="batalkanModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
     <!--   Core JS Files   -->

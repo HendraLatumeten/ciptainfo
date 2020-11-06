@@ -23,6 +23,8 @@
 			<td><?php 
 				if ($pecah['status_pembelian'] == "1") {
 					echo  "Menunggu Konfirmasi";
+				}else if($pecah['status_pembelian'] == "2"){
+					echo  "Pesanan Sudah Dikonfirmasi";
 				}
 			?></td>
 			<td>

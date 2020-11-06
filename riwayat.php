@@ -3,7 +3,14 @@ include "header.php";
 include "menu.php";
 
 ?>
-
+<?
+function rupiah($angka){
+	
+	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+ 
+} 
+?>
 <?php
 
 if(!isset($_SESSION["pelanggan"]))
@@ -13,6 +20,12 @@ if(!isset($_SESSION["pelanggan"]))
 	exit();
 }
 
+$id = $_SESSION["pelanggan"]["id_pelanggan"];
+
+$ambil = $koneksi->query ("SELECT * FROM pembelian WHERE pembelian.id_pembelian='$id'");
+$detail = $ambil->fetch_assoc();
+$harga = $detail['total_harga'];
+$bayar = 15 / 100 * $harga;
 
 ?>
 
@@ -54,8 +67,9 @@ if(!isset($_SESSION["pelanggan"]))
 				$nomor=1;
 				$id_pelanggan = $_SESSION["pelanggan"]['id_pelanggan'];
 	
-				$ambil = $koneksi->query("SELECT * FROM pembelian AS a JOIN pembayaran AS b ON a.id_pembelian=b.id_pembelian WHERE a.id_pelanggan='$id_pelanggan' ORDER BY a.id_pembelian DESC");
-			
+				$ambil = $koneksi->query("SELECT * FROM pembelian AS a JOIN pembayaran AS b ON a.id_pembelian=b.id_pembelian WHERE a.id_pelanggan='$id_pelanggan' AND ket='1' ORDER BY a.id_pembelian DESC");
+				// var_dump($ambil);
+				
 				while ($pecah = $ambil->fetch_assoc()){
 					
 					$sisa = $pecah['total_harga'] - $pecah['jumlah'];
@@ -73,16 +87,22 @@ if(!isset($_SESSION["pelanggan"]))
 								echo "Sedang Diproses";
 							}elseif ($pecah["status_pembelian"] == "2") {
 								echo "Permintaa Sudah Diterima";
+							}elseif ($pecah["ket"] == "0") {
+								echo "Kesalahan Pembayaran";
 							}
 					?></td>
 					<td>
-						<?php if ($pecah['status_pembelian']=="1") { ?>
+						<?php if ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-						Pembayaran
-						</button>
+						
+			
+					<?php } elseif ($pecah['ket']=="0") { ?>
+						<a href="pembayaran.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Cek Pembayaran</a>
+					
 					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Info</a>
+						<a href="cicilan.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-primary">Cicilan</a>
+						
 					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
 					<?php } elseif ($pecah['status_pembelian']=="4") { ?>
