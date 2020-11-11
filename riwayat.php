@@ -68,7 +68,7 @@ $bayar = 15 / 100 * $harga;
 				$id_pelanggan = $_SESSION["pelanggan"]['id_pelanggan'];
 	
 				$ambil = $koneksi->query("SELECT * FROM pembelian AS a JOIN pembayaran AS b ON a.id_pembelian=b.id_pembelian WHERE a.id_pelanggan='$id_pelanggan' AND ket='1' ORDER BY a.id_pembelian DESC");
-				// var_dump($ambil);
+			
 				
 				while ($pecah = $ambil->fetch_assoc()){
 					
@@ -94,14 +94,15 @@ $bayar = 15 / 100 * $harga;
 					<td>
 						<?php if ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
+						<a href="cicilan.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-primary">Cicilan</a>
 						
 			
-					<?php } elseif ($pecah['ket']=="0") { ?>
+					<?php } elseif ($pecah['tipe']=="2") { ?>
 						<a href="pembayaran.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Cek Pembayaran</a>
-					
+						<a href="cicilan.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-primary">Cicilan</a>
+						
 					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Info</a>
-						<a href="cicilan.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-primary">Cicilan</a>
 						
 					<?php } elseif ($pecah['status_pembelian']=="2") { ?>
 						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>

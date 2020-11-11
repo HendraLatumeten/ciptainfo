@@ -52,12 +52,18 @@ function rupiah($angka){
 		<?php } ?>
 	</tbody>
 
-	
+
 </table>
 
 <?php 
 $ambil1 = $koneksi->query("SELECT * FROM pembelian JOIN pelanggan ON pembelian.id_pelanggan=pelanggan.id_pelanggan WHERE pembelian.id_pembelian='$_GET[id]'");
 $detail = $ambil1->fetch_assoc();
+$id = $_GET["id"];
+
+$harga = $detail['total_harga'];
+$bayar1= 15 / 100 * $harga;
+$bayar2= 50 / 100 * $harga;
+$bayar3= 35 / 100 * $harga;
 
 $foto = $koneksi->query("SELECT * FROM produk WHERE '$detail[id_produk]'");
 $gambar = $foto->fetch_assoc();
@@ -90,7 +96,7 @@ $gambar = $foto->fetch_assoc();
 			<td>Status </td>
 			<td> :</td>
 			<td><b><u>
-					<?php
+						<?php
 						if ($detail['status_pembelian']=="1") {
 							echo "<i>Menunggu Diproses</i>";
 						}else{
@@ -109,12 +115,15 @@ $bukti = $ambil->fetch_assoc();
 <div class="col-md-6">
 	<form method="POST">
 		<img src="../foto_produk/<?php echo $gambar['foto_produk'];?>" style="width:100%; height:300px">
-<br><br>
-		<button type="submit" class="btn btn-primary" name="upload">Lanjutakn</button>
+		<br><br>
+		<?if ($detail['status_pembelian']=="1") {?>
+		<button type="submit" class="btn btn-primary" name="upload">Proses</button>
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#batalkanModal">
 			Batalkan
 		</button>
+		<?}?>
+
 
 	</form>
 </div>
@@ -152,24 +161,21 @@ $bukti = $ambil->fetch_assoc();
 							<td>Pembayaran 1 </td>
 							<td> :</td>
 							<? 
-							$ket1 = $koneksi->query("SELECT * FROM pembayaran WHERE ket =1");
-							$ket = $ket1->fetch_assoc();
-							if ($ket['ket'] == 1) { ?>
+							$ket11 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1");
+							$ket1 = $ket11->fetch_assoc();
+							if ($ket1['tipe'] == 1) { ?>
 
-							<td><?php echo rupiah($bukti['jumlah']) ?></td>
+							<td><?php echo rupiah($ket1['jumlah']) ?></td>
 							<td>
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-primary" data-toggle="modal"
 									data-target="#exampleModal">Detail</button>
 
-							<?
-							$harga = $detail['total_harga'];
-							$bayar = 15 / 100 * $harga;
-							?>
-							<?	if ($bayar != $ket['jumlah'] ) {?>
+
+
 								<button type="button" class="btn btn-danger" data-toggle="modal"
-									data-target="#verifikasiModal">Verifikasi Pembayaran</button>
-							<?}?>
+									data-target="#verifikasiModal1">Verifikasi Pembayaran</button>
+
 
 							</td>
 							<?}else{?>
@@ -182,14 +188,16 @@ $bukti = $ambil->fetch_assoc();
 							<td>Pembayaran 2 </td>
 							<td> :</td>
 							<? 
-							$ket1 = $koneksi->query("SELECT * FROM pembayaran WHERE ket =2");
-							$ket = $ket1->fetch_assoc();
-							if ($ket['ket'] == 2) { ?>
-							<td><?php echo rupiah($bukti['jumlah']) ?></td>
+							$ket22 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =2");
+							$ket2 = $ket22->fetch_assoc();
+							if ($ket2['tipe'] == 2) { ?>
+							<td><?php echo rupiah($ket2['jumlah']) ?></td>
 							<td>
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-primary" data-toggle="modal"
-									data-target="#exampleModal">Detail</button>
+									data-target="#exampleModal2">Detail</button>
+								<button type="button" class="btn btn-danger" data-toggle="modal"
+									data-target="#verifikasiModal2">Verifikasi Pembayaran</button>
 
 
 
@@ -205,16 +213,19 @@ $bukti = $ambil->fetch_assoc();
 							<td>Pembayaran 3 </td>
 							<td> :</td>
 							<? 
-	$ket1 = $koneksi->query("SELECT * FROM pembayaran WHERE ket =3");
-	$ket = $ket1->fetch_assoc();
+							$ket33= $koneksi->query("SELECT * FROM pembayaran WHERE tipe =3");
+							$ket3 = $ket33->fetch_assoc();
 
-	if ($ket['ket'] == 3) { ?>
+							if ($ket3['tipe'] == 3) { 
+							?>
 
-							<td><?php echo rupiah($bukti['jumlah']) ?></td>
+							<td><?php echo rupiah($ket3['jumlah']) ?></td>
 							<td>
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-primary" data-toggle="modal"
-									data-target="#exampleModal">Detail</button>
+									data-target="#exampleModal3">Detail</button>
+								<button type="button" class="btn btn-danger" data-toggle="modal"
+									data-target="#verifikasiModal3">Verifikasi Pembayaran</button>
 
 
 
@@ -242,7 +253,20 @@ $bukti = $ambil->fetch_assoc();
 						<tr>
 							<td>Status </td>
 							<td> :</td>
-							<td><?php echo $detail['alamat'] ?></td>
+							<td><?php 
+							$tahap1= $koneksi->query("SELECT MAX(tipe) FROM pembayaran");
+							$tahap = $tahap1->fetch_assoc();
+							if ($tahap == 1){?>
+						<b><p>Tahap 1 : Survei</p></b>
+
+						<?}else if($tahap == 2){?>
+							<b><p>Tahap 2 : Pengiriman Dan Pemasangan</p></b>
+						<?}else{?>
+							<b><p>Tahap 3 : Finishing</p></b>
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#exampleModal3">Project Done</button>
+						<? }?>
+						</td>
 						</tr>
 					</table>
 
@@ -277,8 +301,8 @@ $bukti = $ambil->fetch_assoc();
 
 	</div>
 
-	
-	
+
+
 
 </div>
 
