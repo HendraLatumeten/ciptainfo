@@ -67,7 +67,7 @@ $bayar = 15 / 100 * $harga;
 				$nomor=1;
 				$id_pelanggan = $_SESSION["pelanggan"]['id_pelanggan'];
 	
-				$ambil = $koneksi->query("SELECT * FROM pembelian AS a JOIN pembayaran AS b ON a.id_pembelian=b.id_pembelian WHERE a.id_pelanggan='$id_pelanggan' AND ket='1' ORDER BY a.id_pembelian DESC");
+				$ambil = $koneksi->query("SELECT * FROM pembelian AS a JOIN pembayaran AS b ON a.id_pembelian=b.id_pembelian WHERE a.id_pelanggan='$id_pelanggan' ORDER BY a.id_pembelian DESC");
 			
 				
 				while ($pecah = $ambil->fetch_assoc()){

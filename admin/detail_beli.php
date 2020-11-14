@@ -256,12 +256,13 @@ $bukti = $ambil->fetch_assoc();
 							<td><?php 
 							$tahap1= $koneksi->query("SELECT MAX(tipe) FROM pembayaran");
 							$tahap = $tahap1->fetch_assoc();
-							if ($tahap == 1){?>
+						
+							if ($tahap = 1){?>
 						<b><p>Tahap 1 : Survei</p></b>
 
-						<?}else if($tahap == 2){?>
+						<?}else if($tahap = 2){?>
 							<b><p>Tahap 2 : Pengiriman Dan Pemasangan</p></b>
-						<?}else{?>
+						<?}else if($tahap = 3){?>
 							<b><p>Tahap 3 : Finishing</p></b>
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 									data-target="#exampleModal3">Project Done</button>
@@ -281,9 +282,29 @@ $bukti = $ambil->fetch_assoc();
 
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4">Mandor</h1>
-				<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
-				</p>
+				<h5 class="display-4">Mandor untuk Mengawasi Pengerjaan Proyek</h5>
+				<form action="" method="post">
+				<select name="mandor">
+					<option disabled selected> Pilih Mandor </option>
+					<?php 
+					$mandor=mysqli_query($koneksi,"SELECT * FROM mandor");
+					while ($data=mysqli_fetch_array($mandor)) {
+					?>
+					<option value="<?=$data['id_mandor']?>"><?=$data['username']?></option> 
+					<?php
+					}
+					?>
+					</select>
+					<button type="submit" class="btn btn-primary" name="savemandor">Simpan</button>
+					</form>
+					<?php if (isset($_POST['savemandor'])) {
+			
+					$id = $_GET['id'];
+					$mandor = $_POST['mandor'];
+					$koneksi->query("UPDATE pembelian SET id_mandor = '$mandor' WHERE id_pembelian = '$id'");
+				
+					echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";
+					} ?>
 			</div>
 		</div>
 

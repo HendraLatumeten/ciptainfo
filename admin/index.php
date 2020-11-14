@@ -593,10 +593,18 @@ if (!isset($_SESSION['admin'])) {
                 </div>
 
                 <div class="modal-footer">
+                
                     <?
+                    if ($bukti['ket'] == 0) {
+                        # code...
+                   
         include('pembayaran1_batal.php');
-      ?>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    ?>
+                    <?
+        include('pembayaran1_terima.php');
+    }
+                    ?>
+                   
                 </div>
             </div>
         </div>
