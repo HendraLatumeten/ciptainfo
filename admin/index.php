@@ -116,11 +116,19 @@ if (!isset($_SESSION['admin'])) {
                 } ?>>
                         <a href="index.php?halaman=pembelian">
                             <i class="pe-7s-news-paper"></i>
-                            <p>Pembelian</p>
+                            <?
+                            $beli1 = $koneksi->query("SELECT * FROM pembelian WHERE id_pembelian");
+                            $beli = $beli1->num_rows;
+                            ?>
+                            <p>Pembelian
+                            <span class="badge" style="color:red; font-size: large;"><?php echo $beli; ?></span>
+                            </p>
+      
 
                         </a>
                     </li>
-
+    
+</a> 
                     <!-- <li <?php if (!isset($_GET['halaman'])) {
                    //. echo "class='active'";
                    if ($_GET['halaman']=="data_kayu") {
@@ -595,7 +603,7 @@ if (!isset($_SESSION['admin'])) {
                 <div class="modal-footer">
                 
                     <?
-                    if ($bukti['ket'] == 0) {
+                    if ($bukti['ket'] == 1) {
                         # code...
                    
         include('pembayaran1_batal.php');
@@ -691,9 +699,10 @@ if (!isset($_SESSION['admin'])) {
 
                 <div class="modal-footer">
                     <?
-        include('pembayaran1_batal.php');
+        include('pembayaran2_batal.php');
+        include('pembayaran2_terima.php');
       ?>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
                 </div>
             </div>
         </div>
@@ -780,9 +789,10 @@ if (!isset($_SESSION['admin'])) {
 
                 <div class="modal-footer">
                     <?
-        include('pembayaran1_batal.php');
+        include('pembayaran3_batal.php');
+        include('pembayaran3_terima.php');
       ?>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  
                 </div>
             </div>
         </div>

@@ -93,6 +93,11 @@ $gambar = $foto->fetch_assoc();
 			<td><?php echo $detail['alamat'] ?></td>
 		</tr>
 		<tr>
+			<td>Telp </td>
+			<td> :</td>
+			<td><?php echo $detail['tlp'] ?></td>
+		</tr>
+		<tr>
 			<td>Status </td>
 			<td> :</td>
 			<td><b><u>
@@ -116,7 +121,7 @@ $bukti = $ambil->fetch_assoc();
 	<form method="POST">
 		<img src="../foto_produk/<?php echo $gambar['foto_produk'];?>" style="width:100%; height:300px">
 		<br><br>
-		<?if ($detail['status_pembelian']=="1") {?>
+		<?if ($detail['status_pembelian']=="0") {?>
 		<button type="submit" class="btn btn-primary" name="upload">Proses</button>
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#batalkanModal">
@@ -132,13 +137,13 @@ $bukti = $ambil->fetch_assoc();
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
 	<li class="nav-item">
-		<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-			aria-controls="pills-profile" aria-selected="false">Pembayaran</a>
+		<a class="nav-link" id="pills-pembayaran-tab" data-toggle="pill" href="#pills-pembayaran" role="tab"
+			aria-controls="pills-pembayaran" aria-selected="false">Pembayaran</a>
 	</li>
-	<?php if ($detail['status_pembelian']=="2") {?>
+	<?php if ($detail['status_pembelian'] >= "1") {?>
 	<li class="nav-item">
-		<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
-			aria-controls="pills-contact" aria-selected="false">Mandor</a>
+		<a class="nav-link" id="pills-mandor-tab" data-toggle="pill" href="#pills-mandor" role="tab"
+			aria-controls="pills-mandor" aria-selected="false">Mandor</a>
 	</li>
 
 	<li class="nav-item">
@@ -149,7 +154,7 @@ $bukti = $ambil->fetch_assoc();
 </ul>
 <div class="tab-content" id="pills-tabContent">
 
-	<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+	<div class="tab-pane fade" id="pills-pembayaran" role="tabpanel" aria-labelledby="pills-pembayaran-tab">
 
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
@@ -163,7 +168,7 @@ $bukti = $ambil->fetch_assoc();
 							<? 
 							$ket11 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1");
 							$ket1 = $ket11->fetch_assoc();
-							if ($ket1['tipe'] == 1) { ?>
+							if ($ket1['tipe'] == 1 AND $ket1['ket'] == 1 ) { ?>
 
 							<td><?php echo rupiah($ket1['jumlah']) ?></td>
 							<td>
@@ -178,10 +183,14 @@ $bukti = $ambil->fetch_assoc();
 
 
 							</td>
+							
+							<?}else if($ket1['tipe'] == 1 AND $ket1['ket'] == 2 ){?>
+								<td><i>Pembayaran Sudah TerVerifikasi</i></td>
+							<?}else if($ket1['tipe'] == 1 AND $ket1['ket'] == 0){?>
+								<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah Dibatalkan</i></td>
 							<?}else{?>
-							<td><i>Belum Melakukan Pembayaran</i></td>
-
-							<?}	?>
+								<td><i>Belum Melakukan pembayaran</i></td>
+							<?}?>
 						</tr>
 						<!-- pembayaran2 -->
 						<tr>
@@ -190,7 +199,7 @@ $bukti = $ambil->fetch_assoc();
 							<? 
 							$ket22 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =2");
 							$ket2 = $ket22->fetch_assoc();
-							if ($ket2['tipe'] == 2) { ?>
+							if ($ket2['tipe'] == 2 AND $ket2['ket'] == 1  ) { ?>
 							<td><?php echo rupiah($ket2['jumlah']) ?></td>
 							<td>
 								<!-- Button trigger modal -->
@@ -203,10 +212,13 @@ $bukti = $ambil->fetch_assoc();
 
 							</td>
 
+							<?}else if($ket2['tipe'] == 2 AND $ket2['ket'] == 2 ){?>
+								<td><i>Pembayaran Sudah TerVerifikasi</i></td>
+							<?}else if($ket2['tipe'] == 2 AND $ket2['ket'] == 0){?>
+								<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah Dibatalkan</i></td>
 							<?}else{?>
-							<td><i>Belum Melakukan Pembayaran</i></td>
-
-							<?}	?>
+								<td><i>Belum Melakukan pembayaran</i></td>
+							<?}?>
 						</tr>
 						<!-- pembayaran3 -->
 						<tr>
@@ -216,7 +228,7 @@ $bukti = $ambil->fetch_assoc();
 							$ket33= $koneksi->query("SELECT * FROM pembayaran WHERE tipe =3");
 							$ket3 = $ket33->fetch_assoc();
 
-							if ($ket3['tipe'] == 3) { 
+							if ($ket3['tipe'] == 3 AND $ket3['ket'] == 1 ) { 
 							?>
 
 							<td><?php echo rupiah($ket3['jumlah']) ?></td>
@@ -231,13 +243,16 @@ $bukti = $ambil->fetch_assoc();
 
 							</td>
 
+							<?}else if($ket3['tipe'] == 3 AND $ket3['ket'] == 2 ){?>
+								<td><i>Pembayaran Sudah TerVerifikasi</i></td>
+							<?}else if($ket3['tipe'] == 3 AND $ket3['ket'] == 0){?>
+								<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah Dibatalkan</i></td>
 							<?}else{?>
-							<td><i>Belum Melakukan Pembayaran</i></td>
-
-							<?}	?>
+								<td><i>Belum Melakukan pembayaran</i></td>
+							<?}?>
 						</tr>
 
-
+						
 
 						<!-- 		
 		<tr>
@@ -251,22 +266,23 @@ $bukti = $ambil->fetch_assoc();
 			<td><?php echo $detail['nama'] ?></td>
 		</tr> -->
 						<tr>
-							<td>Status </td>
+							<td><b>Status Pembayaran</b></td>
 							<td> :</td>
 							<td><?php 
 							$tahap1= $koneksi->query("SELECT MAX(tipe) FROM pembayaran");
+							
 							$tahap = $tahap1->fetch_assoc();
-						
-							if ($tahap = 1){?>
-						<b><p>Tahap 1 : Survei</p></b>
+							var_dump($tahap);
+							if ($tahap =='1'){
+						echo '<b><p>Tahap 1 : Survei</p></b>';
 
-						<?}else if($tahap = 2){?>
-							<b><p>Tahap 2 : Pengiriman Dan Pemasangan</p></b>
-						<?}else if($tahap = 3){?>
-							<b><p>Tahap 3 : Finishing</p></b>
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-									data-target="#exampleModal3">Project Done</button>
-						<? }?>
+						}else if($tahap == '2'){
+						echo '	<b><p>Tahap 2 : Pengiriman Dan Pemasangan</p></b>';
+						}else if($tahap =="3"){
+							echo '<b><p>Tahap 3 : Finishing</p></b>';
+							
+						}
+							 ?>
 						</td>
 						</tr>
 					</table>
@@ -278,11 +294,17 @@ $bukti = $ambil->fetch_assoc();
 
 	</div>
 
-	<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+	<div class="tab-pane fade" id="pills-mandor" role="tabpanel" aria-labelledby="pills-mandor-tab">
 
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h5 class="display-4">Mandor untuk Mengawasi Pengerjaan Proyek</h5>
+			<h5 class="display-4">Mandor untuk Mengawasi Pengerjaan Proyek</h5>
+			<?
+			$mandor1 = $koneksi->query("SELECT id_mandor FROM pembelian WHERE id_pembelian='$_GET[id]'");
+			$mandor2 = $mandor1->fetch_assoc();
+			?>
+			<?if ($mandor2 == 0) {?>
+		
 				<form action="" method="post">
 				<select name="mandor">
 					<option disabled selected> Pilih Mandor </option>
@@ -305,6 +327,54 @@ $bukti = $ambil->fetch_assoc();
 				
 					echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";
 					} ?>
+		<?	}else{ ?>
+			<?php
+	//   $mandor3 = $koneksi->query("SELECT * FROM pembelian JOIN mandor ON pembelian.id_mandor=mandor.id_mandor WHERE id_pembelian='$_GET[id]'");
+		   $mandor4=$koneksi->query("SELECT * FROM pembelian WHERE id_pembelian='$_GET[id]'");
+		   $mandor6 = $mandor4->fetch_assoc();  
+		   $man = $mandor6['id_mandor'];
+	
+		   ?>
+				<form action="" method="post">
+			
+			<select name="mandor" value="<? echo $mandor6?>">
+			<option disabled selected> Pilih Mandor </option>
+                           <?
+						
+							$mandor5=$koneksi->query("SELECT * FROM mandor");
+							while ($data=mysqli_fetch_array($mandor5))
+                            {
+							$id_man=$data['id_mandor'];
+							$name=$data['username'];
+                           //Data akan terseleksi (selected) jika variabel $kode sama dengan $kdprincipal
+                            if($man==$id_man){
+                            $cek="selected";
+                            }
+                            else{
+                            $cek="";
+                            }
+                            echo"<option value='$id_man' $cek>$name</option>";
+                           
+                            }
+						
+							?>
+							</select>    
+     
+				
+					
+					<button type="submit" class="btn btn-primary" name="updatemandor">update</button>
+					</form>
+					<!--  -->
+					<?php if (isset($_POST['updatemandor'])) {
+			
+            $id = $_GET['id'];
+            $mandor = $_POST['mandor'];
+            $koneksi->query("UPDATE pembelian SET id_mandor = '$mandor' WHERE id_pembelian = '$id'");
+       
+			echo "<script>alert('Mandor Berhasil Diganti') </script>";
+			echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=detail_beli&id=$id'>";
+            } ?>
+			<?	} ?>
 			</div>
 		</div>
 
@@ -333,7 +403,7 @@ $bukti = $ambil->fetch_assoc();
 </div>
 
 <?php if (isset($_POST['upload'])) {
-	$status = "2";
+	$status = "1";
 	$id = $_GET['id'];
 	$koneksi->query("UPDATE pembelian SET status_pembelian = '$status' WHERE id_pembelian = '$id'");
 	echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";

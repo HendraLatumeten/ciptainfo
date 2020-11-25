@@ -42,7 +42,7 @@ $bayar3 = 35 / 100 * $harga;
 </div>
 
 <?
-$ambil1 = $koneksi->query("SELECT * FROM pembayaran WHERE id_pembelian='$_GET[id]' AND tipe='1' AND ket='1'");
+$ambil1 = $koneksi->query("SELECT * FROM pembayaran WHERE id_pembelian='$_GET[id]' AND tipe='1' ");
 $bukti1 = $ambil1->fetch_assoc();
 
 $ambil2 = $koneksi->query("SELECT * FROM pembayaran WHERE id_pembelian='$_GET[id]' AND tipe='2'");
@@ -76,6 +76,7 @@ $bukti3 = $ambil3->fetch_assoc();
                             <div class="container">
                                 <h3 class="display-4">Pembayaran Pertama</h3>
                                 <p class="lead">
+                             <?   if ($bukti1['tipe'] == '1' AND $bukti1['ket'] > '0') {?>
                                     <table class="table">
                                         <tr>
                                             <td>Nama Transfer</td>
@@ -117,7 +118,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                             <td>
                                                 <b>
                                                     <?php
-							if ($bukti1['ket'] == '1') {
+							if ($bukti1['ket'] == '2') {
                                 echo "<u><i>Berhasil</i></u>";
                             }else{
                                 echo "<u><i>Sedang dikonfirmasi</i></u>";
@@ -127,11 +128,72 @@ $bukti3 = $ambil3->fetch_assoc();
                                             </td>
                                         </tr>
                                     </table>
+                                    <?}else {?>
+                                        <div class="container">
+                                        <h2>Konfirmasi Pembayaran</h2>
+                                        <p>Kirim Bukti Pembarayan Di sini</p>
+                                        <div class="alert alert-danger">Pembayaran Pertama <b>(DP)</b> 15% Dari Total
+                                            Harga!
+                                            <strong><?php echo rupiah($harga)?></strong>
+                                        </div>
 
+                                        <div class="alert alert-success">Total Tagihan Anda
+                                            <strong><?php echo rupiah($bayar1)?></strong>
+                                            <strong> || BANK BCA 124-020201-2121 CIPTA INFO</strong>
+                                        </div>
+                                     
+                                        <form method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label>Nama Penyetor</label>
+                                                <input type="text" class="form-control" name="nama">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Bank</label>
+                                                <input type="text" class="form-control" name="bank">
+                                            </div>
+                                            <div class="form-group" data-toggle="tooltip" data-placement="left"
+                                                title="Jumlah Harus Sesuai!">
+                                                <label>Jumlah</label>
+                                                <input class="form-control" type="number" name="jumlah">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>FOTO Bukti</label>
+                                                <input type="file" class="form-control" name="bukti"
+                                                    required="Harus Diinput">
+                                                <p class="text-danger">*foto bukti harus JPG max 2MB</p>
+                                            </div>
+                                            <button class="btn btn-success" name="form1">Kirim</button>
+                                        </form>
+                                    </div>
+                                    
+
+                                    <?}?>
+                                    <?
+                                    if (isset($_POST["form1"]))
+                                    {
+                                        $namabukti = $_FILES['bukti']['name'];
+                                        $lokasibukti = $_FILES['bukti']['tmp_name'];
+                                        $namafiks = date("YmdHis").$namabukti;
+                                        move_uploaded_file($lokasibukti, "bukti_pembayaran/$namafiks");
+                                    
+                                        $idpem = $_GET["id"];
+                                        $nama = $_POST["nama"];
+                                        $bank = $_POST["bank"];
+                                        $jumlah = $_POST["jumlah"];
+                                        $tanggal = date("Y-m-d");
+                                    
+                                        $koneksi->query("INSERT INTO pembayaran (id_pembelian,nama,bank,jumlah,tanggal,bukti,tipe,ket) VALUES ('$idpem','$nama','$bank','$jumlah','$tanggal','$namafiks','1','1')");
+
+                                        echo "<script>alert('Pembayaran Berhasil');</script>";
+                                        echo "<script>location='riwayat.php';</script>";
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </div>
                     </div>
+                    
 
                     <div class="tab-pane" id="b">
                         <div class="jumbotron jumbotron-fluid">
@@ -139,7 +201,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                 <h3 class="display-4">Pembayaran Kedua</h3>
                                 <p class="lead">
                                     <?
-                            if ($bukti2['tipe'] == 2) {?>
+                            if ($bukti2['tipe'] == '2' AND $bukti2['ket'] > '0') {?>
                                     <table class="table">
                                         <tr>
                                             <td>Nama Transfer</td>
@@ -181,9 +243,9 @@ $bukti3 = $ambil3->fetch_assoc();
                                             <td>
                                                 <b>
                                                     <?php
-							if ($bukti2['ket'] == '1') {
+							if ($bukti2['ket'] == '2') {
                                 echo "<u><i>Berhasil</i></u>";
-                            }else{
+                            }else if($bukti2['ket'] == '1'){
                                 echo "<u><i>Sedang dikonfirmasi</i></u>";
                             }
 						?>
@@ -248,7 +310,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                         $tanggal = date("Y-m-d");
                                     
                                         $koneksi->query("INSERT INTO pembayaran (id_pembelian,nama,bank,jumlah,tanggal,bukti,tipe,ket) VALUES ('$idpem','$nama','$bank','$jumlah','$tanggal','$namafiks','2','1')");
-                                        $koneksi->query("UPDATE pembelian SET status_pembelian='1' WHERE id_pembelian='$idpem'");
+
                                         echo "<script>alert('Pembayaran Berhasil');</script>";
                                         echo "<script>location='riwayat.php';</script>";
                                     }
@@ -264,7 +326,9 @@ $bukti3 = $ambil3->fetch_assoc();
                                 <h3 class="display-4">Pembayaran Ketiga</h3>
                                 <p class="lead">
                                     <?
-                            if ($bukti3['tipe'] == 3) {?>
+                            if ($bukti3['tipe'] == '3' AND $bukti3['ket'] > '0') {
+                             
+                                ?>
                                     <table class="table">
                                         <tr>
                                             <td>Nama Transfer</td>
@@ -306,9 +370,9 @@ $bukti3 = $ambil3->fetch_assoc();
                                             <td>
                                                 <b>
                                                     <?php
-							if ($bukti3['ket'] == '1') {
+							if ($bukti3['ket'] == '2') {
                                 echo "<u><i>Berhasil</i></u>";
-                            }else{
+                            }else if($bukti3['ket'] == '1'){
                                 echo "<u><i>Sedang dikonfirmasi</i></u>";
                             }
 						?>
@@ -324,12 +388,12 @@ $bukti3 = $ambil3->fetch_assoc();
                                             Harga!
                                             <strong><?php echo rupiah($harga)?></strong>
                                         </div>
-
+                                 
                                         <div class="alert alert-success">Total Tagihan Anda
                                             <strong><?php echo rupiah($bayar3)?></strong>
                                             <strong> || BANK BCA 124-020201-2121 CIPTA INFO</strong>
                                         </div>
-
+                                     
                                         <form method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label>Nama Penyetor</label>
@@ -354,8 +418,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                             <button class="btn btn-success" name="form3">Kirim</button>
                                         </form>
                                     </div>
-
-
+                                    
 
                                     <?}?>
                                     <?
@@ -373,7 +436,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                         $tanggal = date("Y-m-d");
                                     
                                         $koneksi->query("INSERT INTO pembayaran (id_pembelian,nama,bank,jumlah,tanggal,bukti,tipe,ket) VALUES ('$idpem','$nama','$bank','$jumlah','$tanggal','$namafiks','3','1')");
-                                        $koneksi->query("UPDATE pembelian SET status_pembelian='1' WHERE id_pembelian='$idpem'");
+                                
                                         echo "<script>alert('Pembayaran Berhasil');</script>";
                                         echo "<script>location='riwayat.php';</script>";
                                     }

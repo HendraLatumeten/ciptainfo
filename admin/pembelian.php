@@ -8,25 +8,31 @@
 			<th title="urutkan berdasarkan customer">Customer</th>
 			<th title="urutkan berdasarkan tanggal">Tanggal</th>
 			<th title="urutkan berdasarkan tanggal">Status</th>
+		
 			<th>Aksi</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php $nomor=1; ?>
-		<?php $ambil=$koneksi->query("SELECT * FROM pembelian JOIN pelanggan ON pembelian.id_pelanggan=pelanggan.id_pelanggan ORDER BY id_pembelian DESC"); ?>
+		<?php $ambil=$koneksi->query("SELECT * FROM pembelian AS a JOIN pelanggan AS b ON a.id_pelanggan=b.id_pelanggan ORDER BY a.id_pembelian DESC"); ?>
 		<?php while ($pecah = $ambil->fetch_assoc()){ ?>
 		<tr>
 			<td><?php echo $nomor; ?></td>
 			<td><?php echo $pecah['id_pembelian']; ?></td>
 			<td><?php echo $pecah['nama']; ?></td>
 			<td><?php echo $pecah['tanggal_pembelian']; ?></td>
+			
 			<td><?php 
-				if ($pecah['status_pembelian'] == "1") {
+				if ($pecah['status_pembelian'] == "0") {
 					echo  "Menunggu Konfirmasi";
-				}else if($pecah['status_pembelian'] == "2"){
+				}else if($pecah['status_pembelian'] == "1"){
 					echo  "Pesanan Sudah Dikonfirmasi";
+				
+				}else if($pecah['status_pembelian'] == "2"){
+					echo  "Proses Pengerjaan";
 				}
 			?></td>
+	
 			<td>
 				<a href="index.php?halaman=detail_beli&id=<?php echo $pecah['id_pembelian']; ?>">Detail</a>
 			</td>
@@ -35,6 +41,7 @@
 		<?php } ?>
 	</tbody>
 </table>
+
 
 <script type="text/javascript">
     $(document).ready(function(){

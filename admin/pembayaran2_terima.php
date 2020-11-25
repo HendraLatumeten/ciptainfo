@@ -10,12 +10,11 @@ if (isset($_POST["terima"]))
     $id = $_GET['id'];
     $koneksi->query("UPDATE pembelian SET status_pembelian = '$status' WHERE id_pembelian = '$id'");
     
-    $koneksi->query("UPDATE pembayaran SET ket = '2' WHERE tipe='1' AND id_pembelian = '$id'");
-        
-
-    echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";
-  
+    $koneksi->query("UPDATE pembayaran SET ket = '2' WHERE tipe='2' AND id_pembelian = '$id'");
     
+    
+
+	echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";
 }
 ?>
 </html>

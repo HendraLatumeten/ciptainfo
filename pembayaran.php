@@ -164,8 +164,8 @@ if (isset($_POST["kirim"]))
 	$jumlah = $_POST["jumlah"];
 	$tanggal = date("Y-m-d");
 
-	$koneksi->query("INSERT INTO pembayaran (id_pembelian,nama,bank,jumlah,tanggal,bukti,tipe,ket) VALUES ('$idpem','$nama','$bank','$jumlah','$tanggal','$namafiks','1','0')");
-	$koneksi->query("UPDATE pembelian SET status_pembelian='1' WHERE id_pembelian='$idpem'");
+	$koneksi->query("INSERT INTO pembayaran (id_pembelian,nama,bank,jumlah,tanggal,bukti,tipe,ket) VALUES ('$idpem','$nama','$bank','$jumlah','$tanggal','$namafiks','1','1')");
+	$koneksi->query("UPDATE pembelian SET status_pembelian='0' WHERE id_pembelian='$idpem'");
 	echo "<script>alert('Pembayaran Berhasil');</script>";
 	echo "<script>location='riwayat.php';</script>";
 }
