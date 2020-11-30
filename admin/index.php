@@ -799,6 +799,45 @@ if (!isset($_SESSION['admin'])) {
     </div>
 
     <!-- //proses batalkan -->
+
+    <!-- progres modal -->
+    <!-- <div class="modal fade" id="progresModal" tabindex="-1" role="dialog" aria-labelledby="progresModal3Label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>View Progres</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <div id="caption"></div>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>Step 1</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>Step 2</td>
+                            
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Step 3</td>
+                            
+                            </td>
+                        </tr>
+                       
+                  
+                </div>
+            </div>
+        </div>
+    </div> -->
   
 </body>
 

@@ -380,12 +380,121 @@ $bukti = $ambil->fetch_assoc();
 
 	</div>
 
-	<div class="tab-pane fade" id="pills-pengerjaan" role="tabpanel" aria-labelledby="pills-pengerjaan-tab">
 
+<?
+   $progres1=$koneksi->query("SELECT * FROM progres WHERE id_pembelian='$_GET[id]' AND step1='1' ");
+   $progresA = $progres1->fetch_assoc();
+
+   $progres2=$koneksi->query("SELECT * FROM progres WHERE id_pembelian='$_GET[id]' AND step2='1' ");
+   $progresB = $progres2->fetch_assoc();  
+ 
+
+   $progres3=$koneksi->query("SELECT * FROM progres WHERE id_pembelian='$_GET[id]' AND step3='1' ");
+   $progresC = $progres3->fetch_assoc();  
+
+   $a = $progresA['presentase'] + $progresB['presentase'] + $progresC['presentase'] ;  
+ 
+   
+
+?>
+	<div class="tab-pane fade" id="pills-pengerjaan" role="tabpanel" aria-labelledby="pills-pengerjaan-tab">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4">pengerjaan</h1>
-				<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
+				<h3 class="display-4"><b>Pengerjaan(%)</b></h3>
+				<p class="lead">
+				<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: <? echo $a; ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <? echo $a; ?>%</div>
+	</div>
+	<!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#progresModal">
+			Lihat
+		</button> -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Step1')" id="defaultOpen">Step1</button>
+  <button class="tablinks" onclick="openCity(event, 'Step2')">Step2</button>
+  <button class="tablinks" onclick="openCity(event, 'Step3')">Step3</button>
+</div>
+
+<div id="Step1" class="tabcontent">
+  <h3>15%</h3>
+  <p></p>
+</div>
+
+<div id="Step2" class="tabcontent">
+  <h3>50%</h3>
+  <p></p> 
+</div>
+
+<div id="Step3" class="tabcontent">
+  <h3>35%</h3>
+  <p></p>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 300px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: 300px;
+}
+</style>
 				</p>
 			</div>
 		</div>

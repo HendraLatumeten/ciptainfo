@@ -57,7 +57,7 @@ function rupiah($angka){
 			</td>
 			<td><center>
 		
-				<a href="index.php?halaman=ubah_data_kayu&id=<?php echo $pecah['id_pembelian']; ?>" class="btn btn-danger" title="Lihat" >Update Pengerjaan</a>
+				<a href="index.php?halaman=progres&id=<?php echo $pecah['id_pembelian']; ?>" class="btn btn-danger" title="Lihat" >Update Pengerjaan</a>
 				<a href="index.php?halaman=detail_project&id=<?php echo $pecah['id_pembelian']; ?>" class="btn btn-primary" title="Lihat" >Detail</a>
 			
 			</center>

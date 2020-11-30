@@ -159,6 +159,20 @@ if (!isset($_SESSION['mandor'])) {
                             include 'detail_project.php';
                         }
                         
+                    }if (isset($_GET['halaman']))
+                    {
+                        if ($_GET['halaman']=="report_data_pembelian")
+                        {
+                            include 'report_data_pembelian.php';
+                        }
+                        
+                    }if (isset($_GET['halaman']))
+                    {
+                        if ($_GET['halaman']=="progres")
+                        {
+                            include 'progres.php';
+                        }
+                        
                     }
                     else 
                     {

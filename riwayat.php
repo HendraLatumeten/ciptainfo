@@ -94,7 +94,7 @@ $bayar = 15 / 100 * $harga;
 					?></td>
 					<td>
 						<?php if ($pecah['status_pembelian'] >= "1") { ?>
-						<a href="nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
+						<a href="report_nota.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-info">Nota</a>
 						<a href="cicilan.php?id=<?php echo $pecah["id_pembelian"]?>" class="btn btn-primary">Cicilan</a>
 						
 			
