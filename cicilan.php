@@ -121,7 +121,7 @@ $bukti3 = $ambil3->fetch_assoc();
 							if ($bukti1['ket'] == '2') {
                                 echo "<u><i>Berhasil</i></u>";
                             }else{
-                                echo "<u><i>Sedang dikonfirmasi</i></u>";
+                                echo "<u><i>Menunggu konfirmasi</i></u>";
                             }
 						?>
                                                 </b>
@@ -246,7 +246,7 @@ $bukti3 = $ambil3->fetch_assoc();
 							if ($bukti2['ket'] == '2') {
                                 echo "<u><i>Berhasil</i></u>";
                             }else if($bukti2['ket'] == '1'){
-                                echo "<u><i>Sedang dikonfirmasi</i></u>";
+                                echo "<u><i>Menunggu konfirmasi</i></u>";
                             }
 						?>
                                                 </b>
@@ -373,7 +373,7 @@ $bukti3 = $ambil3->fetch_assoc();
 							if ($bukti3['ket'] == '2') {
                                 echo "<u><i>Berhasil</i></u>";
                             }else if($bukti3['ket'] == '1'){
-                                echo "<u><i>Sedang dikonfirmasi</i></u>";
+                                echo "<u><i>Menunggu konfirmasi</i></u>";
                             }
 						?>
                                                 </b>

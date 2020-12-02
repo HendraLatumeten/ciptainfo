@@ -115,13 +115,16 @@ $gambar = $foto->fetch_assoc();
 <?php
 $ambil = $koneksi->query("SELECT * FROM pembayaran WHERE id_pembelian='$_GET[id]'");
 $bukti = $ambil->fetch_assoc();
+
+$finish1 = $koneksi->query("SELECT * FROM pembelian AS a JOIN pelanggan AS b ON a.id_pelanggan=b.id_pelanggan  WHERE id_pembelian='$_GET[id]'");
+$finish = $finish1->fetch_assoc();
 ?>
 
 <div class="col-md-6">
 	<form method="POST">
 		<img src="../foto_produk/<?php echo $gambar['foto_produk'];?>" style="width:100%; height:300px">
 		<br><br>
-		<?if ($detail['status_pembelian']=="0") {?>
+		<?if ($detail['status_pembelian']=="1") {?>
 		<button type="submit" class="btn btn-primary" name="upload">Proses</button>
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#batalkanModal">
@@ -140,7 +143,7 @@ $bukti = $ambil->fetch_assoc();
 		<a class="nav-link" id="pills-pembayaran-tab" data-toggle="pill" href="#pills-pembayaran" role="tab"
 			aria-controls="pills-pembayaran" aria-selected="false">Pembayaran</a>
 	</li>
-	<?php if ($detail['status_pembelian'] >= "1") {?>
+	<?php if ($detail['status_pembelian'] >= "2") {?>
 	<li class="nav-item">
 		<a class="nav-link" id="pills-mandor-tab" data-toggle="pill" href="#pills-mandor" role="tab"
 			aria-controls="pills-mandor" aria-selected="false">Mandor</a>
@@ -183,13 +186,14 @@ $bukti = $ambil->fetch_assoc();
 
 
 							</td>
-							
+
 							<?}else if($ket1['tipe'] == 1 AND $ket1['ket'] == 2 ){?>
-								<td><i>Pembayaran Sudah TerVerifikasi</i></td>
+							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
 							<?}else if($ket1['tipe'] == 1 AND $ket1['ket'] == 0){?>
-								<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah Dibatalkan</i></td>
+							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
+									Dibatalkan</i></td>
 							<?}else{?>
-								<td><i>Belum Melakukan pembayaran</i></td>
+							<td><i>Belum Melakukan pembayaran</i></td>
 							<?}?>
 						</tr>
 						<!-- pembayaran2 -->
@@ -213,11 +217,12 @@ $bukti = $ambil->fetch_assoc();
 							</td>
 
 							<?}else if($ket2['tipe'] == 2 AND $ket2['ket'] == 2 ){?>
-								<td><i>Pembayaran Sudah TerVerifikasi</i></td>
+							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
 							<?}else if($ket2['tipe'] == 2 AND $ket2['ket'] == 0){?>
-								<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah Dibatalkan</i></td>
+							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
+									Dibatalkan</i></td>
 							<?}else{?>
-								<td><i>Belum Melakukan pembayaran</i></td>
+							<td><i>Belum Melakukan pembayaran</i></td>
 							<?}?>
 						</tr>
 						<!-- pembayaran3 -->
@@ -244,15 +249,16 @@ $bukti = $ambil->fetch_assoc();
 							</td>
 
 							<?}else if($ket3['tipe'] == 3 AND $ket3['ket'] == 2 ){?>
-								<td><i>Pembayaran Sudah TerVerifikasi</i></td>
+							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
 							<?}else if($ket3['tipe'] == 3 AND $ket3['ket'] == 0){?>
-								<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah Dibatalkan</i></td>
+							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
+									Dibatalkan</i></td>
 							<?}else{?>
-								<td><i>Belum Melakukan pembayaran</i></td>
+							<td><i>Belum Melakukan pembayaran</i></td>
 							<?}?>
 						</tr>
 
-						
+
 
 						<!-- 		
 		<tr>
@@ -283,7 +289,7 @@ $bukti = $ambil->fetch_assoc();
 							
 						}
 							 ?>
-						</td>
+							</td>
 						</tr>
 					</table>
 
@@ -298,28 +304,29 @@ $bukti = $ambil->fetch_assoc();
 
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-			<h5 class="display-4">Mandor untuk Mengawasi Pengerjaan Proyek</h5>
-			<?
-			$mandor1 = $koneksi->query("SELECT id_mandor FROM pembelian WHERE id_pembelian='$_GET[id]'");
+				<h5 class="display-4">Mandor untuk Mengawasi Pengerjaan Proyek</h5>
+				<?
+			$mandor1 = $koneksi->query("SELECT * FROM pembelian WHERE id_pembelian='$_GET[id]'");
 			$mandor2 = $mandor1->fetch_assoc();
-			?>
-			<?if ($mandor2 == 0) {?>
 		
+			?>
+				<?if ($mandor2['id_mandor'] == NULL) {?>
+
 				<form action="" method="post">
-				<select name="mandor">
-					<option disabled selected> Pilih Mandor </option>
-					<?php 
+					<select name="mandor">
+						<option disabled selected> Pilih Mandor </option>
+						<?php 
 					$mandor=mysqli_query($koneksi,"SELECT * FROM mandor");
 					while ($data=mysqli_fetch_array($mandor)) {
 					?>
-					<option value="<?=$data['id_mandor']?>"><?=$data['username']?></option> 
-					<?php
+						<option value="<?=$data['id_mandor']?>"><?=$data['username']?></option>
+						<?php
 					}
 					?>
 					</select>
 					<button type="submit" class="btn btn-primary" name="savemandor">Simpan</button>
-					</form>
-					<?php if (isset($_POST['savemandor'])) {
+				</form>
+				<?php if (isset($_POST['savemandor'])) {
 			
 					$id = $_GET['id'];
 					$mandor = $_POST['mandor'];
@@ -327,19 +334,19 @@ $bukti = $ambil->fetch_assoc();
 				
 					echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";
 					} ?>
-		<?	}else{ ?>
-			<?php
-	//   $mandor3 = $koneksi->query("SELECT * FROM pembelian JOIN mandor ON pembelian.id_mandor=mandor.id_mandor WHERE id_pembelian='$_GET[id]'");
+				<?	}else{ ?>
+				<?php
+
 		   $mandor4=$koneksi->query("SELECT * FROM pembelian WHERE id_pembelian='$_GET[id]'");
 		   $mandor6 = $mandor4->fetch_assoc();  
 		   $man = $mandor6['id_mandor'];
 	
 		   ?>
 				<form action="" method="post">
-			
-			<select name="mandor" value="<? echo $mandor6?>">
-			<option disabled selected> Pilih Mandor </option>
-                           <?
+
+					<select name="mandor" value="<? echo $mandor6?>">
+						<option disabled selected> Pilih Mandor </option>
+						<?
 						
 							$mandor5=$koneksi->query("SELECT * FROM mandor");
 							while ($data=mysqli_fetch_array($mandor5))
@@ -358,14 +365,14 @@ $bukti = $ambil->fetch_assoc();
                             }
 						
 							?>
-							</select>    
-     
-				
-					
+					</select>
+
+
+
 					<button type="submit" class="btn btn-primary" name="updatemandor">update</button>
-					</form>
-					<!--  -->
-					<?php if (isset($_POST['updatemandor'])) {
+				</form>
+				<!--  -->
+				<?php if (isset($_POST['updatemandor'])) {
 			
             $id = $_GET['id'];
             $mandor = $_POST['mandor'];
@@ -374,14 +381,14 @@ $bukti = $ambil->fetch_assoc();
 			echo "<script>alert('Mandor Berhasil Diganti') </script>";
 			echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=detail_beli&id=$id'>";
             } ?>
-			<?	} ?>
+				<?	} ?>
 			</div>
 		</div>
 
 	</div>
 
 
-<?
+	<?
    $progres1=$koneksi->query("SELECT * FROM progres WHERE id_pembelian='$_GET[id]' AND step1='1' ");
    $progresA = $progres1->fetch_assoc();
 
@@ -402,106 +409,143 @@ $bukti = $ambil->fetch_assoc();
 			<div class="container">
 				<h3 class="display-4"><b>Pengerjaan(%)</b></h3>
 				<p class="lead">
-				<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: <? echo $a; ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <? echo $a; ?>%</div>
-	</div>
-	<!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#progresModal">
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" style="width: <? echo $a; ?>%;" aria-valuenow="25"
+							aria-valuemin="0" aria-valuemax="100">
+							<? echo $a; ?>%
+						</div>
+					</div>
+					<!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#progresModal">
 			Lihat
 		</button> -->
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Step1')" id="defaultOpen">Step1</button>
-  <button class="tablinks" onclick="openCity(event, 'Step2')">Step2</button>
-  <button class="tablinks" onclick="openCity(event, 'Step3')">Step3</button>
-</div>
+					<div class="tab">
+						<?if($progresA['step1'] == !NULL){?>
+						<button class="tablinks" onclick="openCity(event, 'Step1')" id="defaultOpen">Step1(15%)</button>
+						<?}else{?>
+						<p><i>Step1(15%) belum dilakukan</i></p>
+						<?}?>
 
-<div id="Step1" class="tabcontent">
-  <h3>15%</h3>
-  <p></p>
-</div>
+						<?if($progresB['step2'] == !NULL){?>
+						<button class="tablinks" onclick="openCity(event, 'Step2')">Step2(50%)</button>
+						<?}else{?>
+						<p><i>Step2(50%) belum dilakukan</i></p>
+						<?}?>
 
-<div id="Step2" class="tabcontent">
-  <h3>50%</h3>
-  <p></p> 
-</div>
+						<?if($progresC['step3'] == !NULL){?>
+						<button class="tablinks" onclick="openCity(event, 'Step3')">Step3(35%)</button>
+						<?}else{?>
+						<p><i>Step2(35%) belum dilakukan</i></p>
+						<?}?>
 
-<div id="Step3" class="tabcontent">
-  <h3>35%</h3>
-  <p></p>
-</div>
+						<?if($progresA['step1'] == '1' AND $progresB['step2'] == '1' AND $progresC['step3'] == '1' ){?>
+						<form action="" method="post">
+							<button type="submit" name="finish" class="btn btn-primary">Finish</button>
+						</form>
+						<?}?>
+						<?php if (isset($_POST['finish'])) {
+							$status = "3";
+							$id = $_GET['id'];
+							$koneksi->query("UPDATE pembelian SET status_pembelian = '$status' WHERE id_pembelian = '$id'");
+							echo "<script>alert('Selesai!') </script>";
+							echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";
+						} ?>
+					</div>
 
-<script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+					<div id="Step1" class="tabcontent">
+						<p>Bukti :</p>
+						<img id="" src="../bukti_pengerjaan/<?php echo $progresA['foto']; ?>" width="300px">
+						<p><?php echo $progresA['ket']; ?></p>
+					</div>
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
-<style>
-* {box-sizing: border-box}
-body {font-family: "Lato", sans-serif;}
 
-/* Style the tab */
-.tab {
-  float: left;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  width: 30%;
-  height: 300px;
-}
+					<div id="Step2" class="tabcontent">
+						<p>Bukti :</p>
+						<img id="" src="../bukti_pengerjaan/<?php echo $progresB['foto']; ?>" width="300px">
+						<p><?php echo $progresB['ket']; ?></p>
+					</div>
 
-/* Style the buttons inside the tab */
-.tab button {
-  display: block;
-  background-color: inherit;
-  color: black;
-  padding: 22px 16px;
-  width: 100%;
-  border: none;
-  outline: none;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 17px;
-}
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current "tab button" class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  float: left;
-  padding: 0px 12px;
-  border: 1px solid #ccc;
-  width: 70%;
-  border-left: none;
-  height: 300px;
-}
-</style>
+					<div id="Step3" class="tabcontent">
+						<p>Bukti :</p>
+						<img id="" src="../bukti_pengerjaan/<?php echo $progresC['foto']; ?>" width="300px">
+						<p><?php echo $progresC['ket']; ?></p>
+					</div>
 				</p>
 			</div>
 		</div>
-
 	</div>
 
+	<script>
+						function openCity(evt, cityName) {
+							var i, tabcontent, tablinks;
+							tabcontent = document.getElementsByClassName("tabcontent");
+							for (i = 0; i < tabcontent.length; i++) {
+								tabcontent[i].style.display = "none";
+							}
+							tablinks = document.getElementsByClassName("tablinks");
+							for (i = 0; i < tablinks.length; i++) {
+								tablinks[i].className = tablinks[i].className.replace(" active", "");
+							}
+							document.getElementById(cityName).style.display = "block";
+							evt.currentTarget.className += " active";
+						}
 
+						// Get the element with id="defaultOpen" and click on it
+						document.getElementById("defaultOpen").click();
+					</script>
+					<style>
+						* {
+							box-sizing: border-box
+						}
+
+						body {
+							font-family: "Lato", sans-serif;
+						}
+
+						/* Style the tab */
+						.tab {
+							float: left;
+							border: 1px solid #ccc;
+							background-color: #f1f1f1;
+							width: 40%;
+							height: 500px;
+						}
+
+						/* Style the buttons inside the tab */
+						.tab button {
+							display: block;
+							background-color: inherit;
+							color: black;
+							padding: 22px 16px;
+							width: 100%;
+							border: none;
+							outline: none;
+							text-align: left;
+							cursor: pointer;
+							transition: 0.3s;
+							font-size: 17px;
+						}
+
+						/* Change background color of buttons on hover */
+						.tab button:hover {
+							background-color: #ddd;
+						}
+
+						/* Create an active/current "tab button" class */
+						.tab button.active {
+							background-color: #ccc;
+						}
+
+						/* Style the tab content */
+						.tabcontent {
+							float: left;
+							padding: 0px 12px;
+							border: 1px solid #ccc;
+							width: 60%;
+							border-left: none;
+							height: 500px;
+						}
+					</style>
 
 
 </div>
@@ -512,7 +556,7 @@ body {font-family: "Lato", sans-serif;}
 </div>
 
 <?php if (isset($_POST['upload'])) {
-	$status = "1";
+	$status = "2";
 	$id = $_GET['id'];
 	$koneksi->query("UPDATE pembelian SET status_pembelian = '$status' WHERE id_pembelian = '$id'");
 	echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";

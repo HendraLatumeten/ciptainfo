@@ -13,11 +13,11 @@
 
 <?php
 $project = $koneksi->query("SELECT * FROM pembelian WHERE id_mandor = '$mandor'");
-$mandor = $project->num_rows;
+$mandor1 = $project->num_rows;
 
-$a = $koneksi->query("SELECT * FROM pembelian WHERE status_pengerjaan = '0'");
+$a = $koneksi->query("SELECT * FROM pembelian WHERE id_mandor = '$mandor' AND status_pembelian='2'");
 $progres = $a->num_rows;
-$b = $koneksi->query("SELECT * FROM pembelian WHERE status_pengerjaan = '1'");
+$b = $koneksi->query("SELECT * FROM pembelian WHERE id_mandor = '$mandor' AND status_pembelian='3'");
 $selesai = $b->num_rows;
 
 //-- $ambiljumlahpelanggan = $koneksi->query("SELECT * FROM pelanggan WHERE id_pelanggan");
@@ -38,14 +38,8 @@ $selesai = $b->num_rows;
 
 <div class="col-md-4">
 	<h3>Info Data Pengerjaan Mandor CIPTAINFO</h3>
-	<p>Total Project: <?php echo $mandor; ?></p>
+	<p>Total Project: <?php echo $mandor1; ?></p>
   <h4 class="alert alert-danger"><b><?php echo $progres; ?></b> Proses</h4>
-  <h4 class="alert alert-info"><b><?php echo $selesai; ?></b> Selesai</h4>
-<!-- //   <h4 class="alert alert-info"><b><?php echo $pelanggan; ?></b> DATA PELANGGAN</h4>
-//   <h4 class="alert alert-info"><b><?php echo $produk; ?></b> DATA PRODUK</h4> -->
-  <!-- <h4 class="alert alert-info"><b><?php echo $penjualan; ?></b> DATA PENJUALAN</h4> -->
-  <!-- <h4 class="alert alert-info"><b><?php echo $pembelian; ?></b> DATA PEMBELIAN</h4> -->
-  <!-- <h4 class="alert alert-info"><b><?php echo $pembelian; ?></b> DATA PEMBELIAN</h4> -->
-  
+  <h4 class="alert alert-info"><b><?php echo $selesai; ?></b> Selesai</h4>  
 </div>
 			

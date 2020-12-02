@@ -121,14 +121,14 @@ if (!isset($_SESSION['admin'])) {
                             $beli = $beli1->num_rows;
                             ?>
                             <p>Pembelian
-                            <span class="badge" style="color:red; font-size: large;"><?php echo $beli; ?></span>
+                                <span class="badge" style="color:red; font-size: large;"><?php echo $beli; ?></span>
                             </p>
-      
+
 
                         </a>
                     </li>
-    
-</a> 
+
+                    </a>
                     <!-- <li <?php if (!isset($_GET['halaman'])) {
                    //. echo "class='active'";
                    if ($_GET['halaman']=="data_kayu") {
@@ -458,8 +458,8 @@ if (!isset($_SESSION['admin'])) {
             </div>
         </div>
     </div>
-     <!-- Modal  detail pembayaran 2 -->
-     <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
+    <!-- Modal  detail pembayaran 2 -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -601,7 +601,7 @@ if (!isset($_SESSION['admin'])) {
                 </div>
 
                 <div class="modal-footer">
-                
+
                     <?
                     if ($bukti['ket'] == 1) {
                         # code...
@@ -612,7 +612,7 @@ if (!isset($_SESSION['admin'])) {
         include('pembayaran1_terima.php');
     }
                     ?>
-                   
+
                 </div>
             </div>
         </div>
@@ -702,14 +702,14 @@ if (!isset($_SESSION['admin'])) {
         include('pembayaran2_batal.php');
         include('pembayaran2_terima.php');
       ?>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 
-     <!-- verifikasi pembayaran 3-->
-     <div class="modal fade" id="verifikasiModal3" tabindex="-1" role="dialog" aria-labelledby="verifikasiModal3Label"
+    <!-- verifikasi pembayaran 3-->
+    <div class="modal fade" id="verifikasiModal3" tabindex="-1" role="dialog" aria-labelledby="verifikasiModal3Label"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -792,7 +792,7 @@ if (!isset($_SESSION['admin'])) {
         include('pembayaran3_batal.php');
         include('pembayaran3_terima.php');
       ?>
-                  
+
                 </div>
             </div>
         </div>
@@ -838,7 +838,9 @@ if (!isset($_SESSION['admin'])) {
             </div>
         </div>
     </div> -->
-  
+
+   
+
 </body>
 
 <!--   Core JS Files   -->

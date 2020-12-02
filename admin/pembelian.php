@@ -24,17 +24,22 @@
 			
 			<td><?php 
 				if ($pecah['status_pembelian'] == "0") {
-					echo  "Menunggu Konfirmasi";
+					echo  "Pesanan Ditolak";
 				}else if($pecah['status_pembelian'] == "1"){
-					echo  "Pesanan Sudah Dikonfirmasi";
+					echo  "Menunggu Konfirmasi";
 				
 				}else if($pecah['status_pembelian'] == "2"){
 					echo  "Proses Pengerjaan";
+				}else if($pecah['status_pembelian'] == "3"){
+					echo  "Selesai";
 				}
 			?></td>
 	
 			<td>
 				<a href="index.php?halaman=detail_beli&id=<?php echo $pecah['id_pembelian']; ?>">Detail</a>
+				<? if ($pecah['status_pembelian'] == "3") {?>
+					|| <a href="index.php?halaman=detail_beli&id=<?php echo $pecah['id_pembelian']; ?>">Ulasan</a>
+				<?}?>
 			</td>
 		</tr>
 		<?php $nomor++; ?>
@@ -74,14 +79,3 @@
 
     });
 </script>
-
-<pre><h5>
-	Keterangan Status pembelian :
-
-		Created 		: Customer memesan produk
-		Process 	: Customer sudah upload bukti transfer
-		On The Way 	: Produk sedang dalam perjalanan
-		Finish 		: Produk sudah di terima oleh Customer
-		Expired 		: Customer tidak upload bukti transfer
-
-</h5></pre>

@@ -173,6 +173,13 @@ if (!isset($_SESSION['mandor'])) {
                             include 'progres.php';
                         }
                         
+                    }if (isset($_GET['halaman']))
+                    {
+                        if ($_GET['halaman']=="logout")
+                        {
+                            include 'logout.php';
+                        }
+                        
                     }
                     else 
                     {

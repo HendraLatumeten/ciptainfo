@@ -46,7 +46,7 @@ function rupiah($angka){
 			<td><?php echo $pecah['tlp']; ?></td>
 			<td>
 			<?php 
-				if ($pecah['status_pengerjaan'] == 0) {
+				if ($pecah['status_pembelian'] == 2) {
 					echo "Proses pengerjaan"; 
 					
 				}else{
@@ -56,10 +56,10 @@ function rupiah($angka){
 			?>
 			</td>
 			<td><center>
-		
+		<?if ($pecah['status_pembelian'] == 2) { ?>
 				<a href="index.php?halaman=progres&id=<?php echo $pecah['id_pembelian']; ?>" class="btn btn-danger" title="Lihat" >Update Pengerjaan</a>
 				<a href="index.php?halaman=detail_project&id=<?php echo $pecah['id_pembelian']; ?>" class="btn btn-primary" title="Lihat" >Detail</a>
-			
+		<? }?>
 			</center>
 			</td>
 		</tr>
