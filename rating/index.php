@@ -2,11 +2,11 @@
 include '../koneksi.php';
 $id = $_GET['id'];
 //ambil rata-rata jumlah rating
-$q      = $koneksi->query("SELECT AVG(rate) AS jml FROM t_rating")->fetch_assoc();
+$q      = $koneksi->query("SELECT AVG(rate) AS jml FROM rating")->fetch_assoc();
 $hasil  = ceil($q['jml']);
 
 //cek ip user
-$cek    = $koneksi->query("SELECT * FROM `t_rating` WHERE ipuser = '" . md5($_SERVER['REMOTE_ADDR']) . "'");
+$cek    = $koneksi->query("SELECT * FROM `rating` WHERE id_pembelian = '" . $id . "'");
 
 if ($cek->num_rows > 0) {
     $cek = $cek->fetch_assoc();
@@ -185,8 +185,11 @@ if ($cek->num_rows > 0) {
                         $('#hasil').html('Rating ' + obj[1] + '.0');
                         $('#star').html(obj[2]);
                         alert("terima kasih atas penilaian anda");
+                        window.location.href = "../index.php";
                     }
                 });
+
+                
             });
         });
     </script>

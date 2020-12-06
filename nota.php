@@ -9,9 +9,11 @@ if(!isset($_SESSION["pelanggan"]))
 {
 	echo "<script>alert('silahkan login terlebih dahulu');</script>";
 	echo "<script>location='login.php';</script>";
-	exit();
+	
 }
-
+// $id= $_SESSION["pelanggan"]['id_pelanggan']);
+?>
+<?
 function rupiah($angka){
 	
 	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');

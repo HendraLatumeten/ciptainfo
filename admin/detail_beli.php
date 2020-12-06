@@ -169,7 +169,7 @@ $finish = $finish1->fetch_assoc();
 							<td>Pembayaran 1 </td>
 							<td> :</td>
 							<? 
-							$ket11 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1");
+							$ket11 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1 AND ket=1 AND id_pembelian='$_GET[id]'");
 							$ket1 = $ket11->fetch_assoc();
 							if ($ket1['tipe'] == 1 AND $ket1['ket'] == 1 ) { ?>
 
@@ -186,10 +186,15 @@ $finish = $finish1->fetch_assoc();
 
 
 							</td>
+							<? } ?>
 
-							<?}else if($ket1['tipe'] == 1 AND $ket1['ket'] == 2 ){?>
+<?
+$ket111 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1 AND ket=2 AND id_pembelian='$_GET[id]'");
+$ket11 = $ket111->fetch_assoc();
+?>
+							<?if($ket11['tipe'] == 1 AND $ket11['ket'] == 2 ){?>
 							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
-							<?}else if($ket1['tipe'] == 1 AND $ket1['ket'] == 0){?>
+							<?}else if($ket11['tipe'] == 1 AND $ket11['ket'] == 0){?>
 							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
 									Dibatalkan</i></td>
 							<?}else{?>
@@ -201,7 +206,7 @@ $finish = $finish1->fetch_assoc();
 							<td>Pembayaran 2 </td>
 							<td> :</td>
 							<? 
-							$ket22 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =2");
+							$ket22 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =2 AND ket=1 AND id_pembelian='$_GET[id]'");
 							$ket2 = $ket22->fetch_assoc();
 							if ($ket2['tipe'] == 2 AND $ket2['ket'] == 1  ) { ?>
 							<td><?php echo rupiah($ket2['jumlah']) ?></td>
@@ -215,14 +220,16 @@ $finish = $finish1->fetch_assoc();
 
 
 							</td>
-
-							<?}else if($ket2['tipe'] == 2 AND $ket2['ket'] == 2 ){?>
+							<? } ?>
+							<?
+$ket222 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =2 AND ket=2 AND id_pembelian='$_GET[id]'");
+$ket22 = $ket222->fetch_assoc();
+?>
+							<?if($ket22['tipe'] == 2 AND $ket22['ket'] == 2 ){?>
 							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
-							<?}else if($ket2['tipe'] == 2 AND $ket2['ket'] == 0){?>
+							<?}else if($ket22['tipe'] == 2 AND $ket22['ket'] == 0){?>
 							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
 									Dibatalkan</i></td>
-							<?}else{?>
-							<td><i>Belum Melakukan pembayaran</i></td>
 							<?}?>
 						</tr>
 						<!-- pembayaran3 -->
@@ -230,7 +237,7 @@ $finish = $finish1->fetch_assoc();
 							<td>Pembayaran 3 </td>
 							<td> :</td>
 							<? 
-							$ket33= $koneksi->query("SELECT * FROM pembayaran WHERE tipe =3");
+							$ket33= $koneksi->query("SELECT * FROM pembayaran WHERE tipe =3 AND ket=1 AND id_pembelian='$_GET[id]'");
 							$ket3 = $ket33->fetch_assoc();
 
 							if ($ket3['tipe'] == 3 AND $ket3['ket'] == 1 ) { 
@@ -247,14 +254,16 @@ $finish = $finish1->fetch_assoc();
 
 
 							</td>
-
-							<?}else if($ket3['tipe'] == 3 AND $ket3['ket'] == 2 ){?>
+							<? } ?>
+							<?
+$ket333 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =3 AND ket=2 AND id_pembelian='$_GET[id]'");
+$ket33 = $ket333->fetch_assoc();
+?>
+							<?if($ket33['tipe'] == 3 AND $ket33['ket'] == 2 ){?>
 							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
-							<?}else if($ket3['tipe'] == 3 AND $ket3['ket'] == 0){?>
+							<?}else if($ket33['tipe'] == 3 AND $ket33['ket'] == 0){?>
 							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
 									Dibatalkan</i></td>
-							<?}else{?>
-							<td><i>Belum Melakukan pembayaran</i></td>
 							<?}?>
 						</tr>
 
@@ -275,7 +284,7 @@ $finish = $finish1->fetch_assoc();
 							<td><b>Status Pembayaran</b></td>
 							<td> :</td>
 							<td><?php 
-							$tahap1= $koneksi->query("SELECT MAX(tipe) FROM pembayaran");
+							$tahap1= $koneksi->query("SELECT MAX(tipe) FROM pembayaran WHERE id_pembelian='$_GET[id]'");
 							
 							$tahap = $tahap1->fetch_assoc();
 							var_dump($tahap);

@@ -1,10 +1,10 @@
 <html>
 <form action="" method="post">
-<button type="submit" name="terima" class="btn btn-primary">Lanjutkan</button>
+<button type="submit" name="terima3" class="btn btn-primary">Lanjutkan</button>
 </form>
 
 <?
-if (isset($_POST["terima"]))
+if (isset($_POST["terima3"]))
 {   
     $status = "2";
     $id = $_GET['id'];

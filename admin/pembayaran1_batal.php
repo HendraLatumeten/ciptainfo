@@ -1,10 +1,10 @@
 <html>
 <form action="" method="post">
-<button type="submit" name="batal" class="btn btn-danger">Batalkan Pembayaran</button>
+<button type="submit" name="batal1" class="btn btn-danger">Batalkan Pembayaran</button>
 </form>
 
 <?
-if (isset($_POST["batal"]))
+if (isset($_POST["batal1"]))
 {   
     $status = "0";
     $id = $_GET['id'];

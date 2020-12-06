@@ -180,9 +180,9 @@ if (isset($_POST["beli"]))
    $tgl = date('d-m-Y');
 
    //pembelian
-   $koneksi->query("INSERT INTO pembelian (id_produk,id_pelanggan,id_mandor,total_harga,tanggal_pembelian,status_pembelian,status_pengerjaan) 
-   VALUES ('$id_produk','$id_pelanggan',null,'$totalharga','$tgl','0',null)");
-  
+   $koneksi->query("INSERT INTO pembelian (id_produk,id_pelanggan,id_mandor,id_rating,total_harga,tanggal_pembelian,status_pembelian) 
+   VALUES ('$id_produk','$id_pelanggan',null,null,'$totalharga','$tgl','0')");
+ 
    $query = mysqli_query($koneksi, "SELECT  MAX(id_pembelian) FROM pembelian");
    $data  = mysqli_fetch_array($query);
  

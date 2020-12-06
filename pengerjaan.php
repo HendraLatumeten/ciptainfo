@@ -141,12 +141,11 @@ include "menu.php";
                     
                     <?}?>
                         <?if($row['step3'] == '1'){ ?>
-                    <input type="button" name="next" class="next action-button" value="Selanjutnya" />&nbsp;
+                    <a href="rating/index.php?&id=<?php echo $progres['id_pembelian']; ?>" class="next action-button">Selanjutnya</a>
                     <input type="button" name="previous" class="previous action-button-previous" value="Kembali" />
                     </fieldset>
                    
-                   <a href="rating/index.php?&id=<?php echo $progres['id_pembelian']; ?>" class="btn btn-primary">Rating</a>
-                    
+                  
                     <?}?>
 
 
@@ -155,30 +154,7 @@ include "menu.php";
 
            
     <? } ?>
-    <fieldset>
-     
-           
-
-                 
-
-                </form>
-                <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    
-                                </div>
-                            </div> <br><br>
-                            <h2 class="purple-text text-center"><strong>Finish</strong></h2> <br>
-                            <div class="row justify-content-center">
-                            <? include 'rating/index.php'; ?>
-                            </div> <br><br>
-                            <div class="row justify-content-center">
-                                <div class="col-7 text-center">
-                                    <h5 class="purple-text text-center">Thank You</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
+  
 
              
             </div>

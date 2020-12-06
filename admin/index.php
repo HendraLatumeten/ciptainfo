@@ -413,7 +413,7 @@ if (!isset($_SESSION['admin'])) {
                         <div id="caption"></div>
                     </div>
                     <div class="zoom">
-                        <img id="myimage" src="../bukti_pembayaran/<?php echo $bukti['bukti']; ?>" width="100">
+                        <img id="myimage" src="../bukti_pembayaran/<?php echo $ket2['bukti']; ?>" width="100">
                     </div>
                     <table class="table">
                         <tr>
@@ -458,13 +458,13 @@ if (!isset($_SESSION['admin'])) {
             </div>
         </div>
     </div>
-    <!-- Modal  detail pembayaran 2 -->
+    <!-- Modal  detail pembayaran 3 -->
     <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><b>Detail Pembayaran 2</b></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><b>Detail Pembayaran 3</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -475,7 +475,7 @@ if (!isset($_SESSION['admin'])) {
                         <div id="caption"></div>
                     </div>
                     <div class="zoom">
-                        <img id="myimage" src="../bukti_pembayaran/<?php echo $bukti['bukti']; ?>" width="100">
+                        <img id="myimage" src="../bukti_pembayaran/<?php echo $ket3['bukti']; ?>" width="100">
                     </div>
                     <table class="table">
                         <tr>
@@ -725,7 +725,7 @@ if (!isset($_SESSION['admin'])) {
                         <div id="caption"></div>
                     </div>
                     <div class="zoom">
-                        <img id="myimage" src="../bukti_pembayaran/<?php echo $ket2['bukti']; ?>" width="100">
+                        <img id="myimage" src="../bukti_pembayaran/<?php echo $ket3['bukti']; ?>" width="100">
                     </div>
                     <table class="table">
                         <tr>
