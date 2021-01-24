@@ -74,10 +74,15 @@ include('../koneksi.php')
                             $pecah = $ambil->fetch_assoc();
                         	$yangcocok = $ambil->num_rows;
                         	if ($yangcocok==1) {
-                                $_SESSION['mandor'] = $pecah['id_mandor'];
-                        		echo "<br>";
-                        		echo "<div class='alert alert-info'>Login Sukses</div>";
-                        		echo "<meta http-equiv='refresh' content='1;url=index.php'>";
+                                if ($pecah['status'] == '1') {
+                                    $_SESSION['mandor'] = $pecah['id_mandor'];
+                                    echo "<br>";
+                                    echo "<div class='alert alert-info'>Login Sukses</div>";
+                                    echo "<meta http-equiv='refresh' content='1;url=index.php'>";
+                                }else{
+                                    echo "<div class='alert alert-danger'>Akun anda sedang diNonaktifkan, Silahkan hubungi ADMIN!!</div>";
+                                }
+                            
                         	}
                         	else {
                         		echo "<br>";

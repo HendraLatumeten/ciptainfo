@@ -175,22 +175,17 @@ if (!isset($_SESSION['admin'])) {
                 </li> -->
 
                     <li <?php if (isset($_GET['halaman'])) {
-                    if ($_GET['halaman']=="admin") {
+                    if ($_GET['halaman']=="mandor") {
                         echo "class='active'";
                     }
                 } ?>>
-                        <a href="index.php?halaman=admin">
+                        <a href="index.php?halaman=mandor">
                             <i class="pe-7s-settings"></i>
-                            <p>admin</p>
+                            <p>Mandor</p>
 
                         </a>
 
-                    <li class="active-pro">
-                        <a href="index.php?halaman=logout">
-                            <i class="pe-7s-power"></i>
-                            <p>Log out</p>
-                        </a>
-                    </li>
+                   
                 </ul>
             </div>
         </div>
@@ -321,6 +316,30 @@ if (!isset($_SESSION['admin'])) {
                         elseif ($_GET['halaman']=="detail_produk")
                         {
                             include 'detail_produk.php';
+                        }
+                        elseif ($_GET['halaman']=="mandor")
+                        {
+                            include 'data_mandor.php';
+                        }
+                        elseif ($_GET['halaman']=="tambah_data_mandor")
+                        {
+                            include 'tambah_data_mandor.php';
+                        }
+                        elseif ($_GET['halaman']=="ubah_data_mandor")
+                        {
+                            include 'ubah_data_mandor.php';
+                        }
+                        elseif ($_GET['halaman']=="hapus_data_mandor")
+                        {
+                            include 'hapus_data_mandor.php';
+                        }
+                        elseif ($_GET['halaman']=="aktif_mandor")
+                        {
+                            include 'aktif_mandor.php';
+                        }
+                        elseif ($_GET['halaman']=="nonaktif_mandor")
+                        {
+                            include 'nonaktif_mandor.php';
                         }
                     }
                     else 

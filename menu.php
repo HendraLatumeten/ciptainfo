@@ -21,7 +21,7 @@
   <ul>
           <li><a href="index.php">Home</a></li>
           <!-- <li><a href="produk.php">Produk Kami</a></li> -->
-          <li><a href="keranjang.php">Tentang Kami</a></li>
+          <li><a href="tk.php">Tentang Kami</a></li>
              <?php if (isset($_SESSION["pelanggan"])):?>
           <!-- <li><a href="produk.php">Produk Custom</a></li> -->
           <li><a href="profil.php" >Profil</a></li>

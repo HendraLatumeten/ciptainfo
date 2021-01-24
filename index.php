@@ -27,7 +27,7 @@ include "slide.php";
 <section class="konten">
 	<div class="container">
 		<div class ="content">
-		<br><center><h1>Desain Jendela Rumah Minimalis</h1></center><br>
+		<br><center><h1>Katalog Produk</h1></center><br>
 		<div class="row">
 
 			<?php

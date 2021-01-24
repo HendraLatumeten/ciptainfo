@@ -24,7 +24,7 @@
 			<td><?php echo $pecah['tlp']; ?></td>
 			<td>
 				<a href="index.php?halaman=detail_pelanggan&id=<?php echo $pecah['id_pelanggan']; ?>" >Detail</a>
-				<a href="index.php?halaman=ubah_pelanggan&id=<?php echo $pecah['id_pelanggan']; ?>" >Ubah</a>
+				<!-- <a href="index.php?halaman=ubah_pelanggan&id=<?php echo $pecah['id_pelanggan']; ?>" >Ubah</a> -->
 				<a href="index.php?halaman=hapus_pelanggan&id=<?php echo $pecah['id_pelanggan']; ?>"   onclick="return confirm('yakin ingin hapus data?')">Hapus</a>
 				
 			</td>

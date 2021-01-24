@@ -33,8 +33,8 @@ include "menu.php";
                 <form id="msform">
                     <!-- progressbar -->
                     <ul id="progressbar">
-                        <li class="active" id="account"><strong>Step 1</strong></li>
-                        <li id="personal"><strong>Step 2</strong></li>
+                        <li class="active" id="payment"><strong>Step 1</strong></li>
+                        <li id="payment"><strong>Step 2</strong></li>
                         <li id="payment"><strong>Step 3</strong></li>
                         <li id="confirm"><strong>Finish</strong></li>
                     </ul>

@@ -130,7 +130,7 @@ $jsArray = "var hrg_brg = new Array();\n";
 
 <section class="kontent">
     <div class="container" class="deskripsi">
-        <div class="row">
+        <!-- <div class="row">
             <center>
                 <h2>Video Produk</h2>
             </center>
@@ -140,7 +140,7 @@ $jsArray = "var hrg_brg = new Array();\n";
                     allowfullscreen></iframe>
             </div>
             <br>
-        </div>
+        </div> -->
         <div class="row">
             <center>
                 <h2>Foto Produk</h2>

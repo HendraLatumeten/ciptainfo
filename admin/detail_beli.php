@@ -197,8 +197,7 @@ $ket11 = $ket111->fetch_assoc();
 							<?}else if($ket11['tipe'] == 1 AND $ket11['ket'] == 0){?>
 							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
 									Dibatalkan</i></td>
-							<?}else{?>
-							<td><i>Belum Melakukan pembayaran</i></td>
+						
 							<?}?>
 						</tr>
 						<!-- pembayaran2 -->
@@ -280,7 +279,7 @@ $ket33 = $ket333->fetch_assoc();
 			<td> :</td>
 			<td><?php echo $detail['nama'] ?></td>
 		</tr> -->
-						<tr>
+						<!-- <tr>
 							<td><b>Status Pembayaran</b></td>
 							<td> :</td>
 							<td><?php 
@@ -299,7 +298,7 @@ $ket33 = $ket333->fetch_assoc();
 						}
 							 ?>
 							</td>
-						</tr>
+						</tr> -->
 					</table>
 
 
@@ -325,7 +324,7 @@ $ket33 = $ket333->fetch_assoc();
 					<select name="mandor">
 						<option disabled selected> Pilih Mandor </option>
 						<?php 
-					$mandor=mysqli_query($koneksi,"SELECT * FROM mandor");
+					$mandor=mysqli_query($koneksi,"SELECT * FROM mandor WHERE status='1'");
 					while ($data=mysqli_fetch_array($mandor)) {
 					?>
 						<option value="<?=$data['id_mandor']?>"><?=$data['username']?></option>
@@ -357,7 +356,7 @@ $ket33 = $ket333->fetch_assoc();
 						<option disabled selected> Pilih Mandor </option>
 						<?
 						
-							$mandor5=$koneksi->query("SELECT * FROM mandor");
+							$mandor5=$koneksi->query("SELECT * FROM mandor WHERE status='1'");
 							while ($data=mysqli_fetch_array($mandor5))
                             {
 							$id_man=$data['id_mandor'];
