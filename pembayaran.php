@@ -46,8 +46,8 @@ $bayar = 15 / 100 * $harga;
 		<strong><?php echo rupiah($harga)?></strong>
 	</div>
 
-	<div class="alert alert-success">Total Tagihan Anda <strong><?php echo rupiah($bayar)?></strong>
-		<strong> || BANK BCA 124-020201-2121 CIPTA INFO</strong>
+	<div class="alert alert-success"><h3>Tagihan Anda <strong><?php echo rupiah($bayar)?></strong>
+		<strong> || BANK BCA 124-020201-2121 CIPTA INFO</strong></h3>
 	</div>
 	<?
 	$ambil1 = $koneksi->query("SELECT * FROM pembayaran JOIN pembelian ON pembayaran.id_pembelian=pembelian.id_pembelian WHERE pembayaran.id_pembelian='$_GET[id]' AND ket='0'");
@@ -128,7 +128,7 @@ $bayar = 15 / 100 * $harga;
 	<form method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label>Nama Penyetor</label>
-			<input type="text" class="form-control" name="nama">
+			<input type="text" class="form-control" name="nama" require>
 		</div>
 		<div class="form-group">
 			<label>Bank</label>

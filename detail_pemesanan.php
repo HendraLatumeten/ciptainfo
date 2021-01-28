@@ -99,14 +99,14 @@ $jsArray = "var hrg_brg = new Array();\n";
                      
                      <div class="form-group">
 				<label>Provinsi</label>
-				<select class="form-control" name="provinsi" id="provinsi">
+				<select class="form-control" name="provinsi" id="provinsi"required>
 					<option value=""> Pilih Provinsi</option>
 				</select>
 			</div>
 			
 			<div class="form-group">
 				<label>Kabupaten</label>
-				<select class="form-control" name="kabupaten" id="kabupaten">
+				<select class="form-control" name="kabupaten" id="kabupaten" >
 					<option value=""></option>
 				</select>
 			</div>
@@ -126,7 +126,7 @@ $jsArray = "var hrg_brg = new Array();\n";
 			</div>
             <div class="form-group">
 				<label>Detail Lokasi</label><br>
-				<textarea class="form-control" name="lokasi" id="" cols="57" rows="3">
+				<textarea class="form-control" name="lokasi" id="" cols="57" rows="3" required>
                 </textarea>
 			</div>
                 </div>

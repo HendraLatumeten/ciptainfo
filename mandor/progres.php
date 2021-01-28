@@ -85,12 +85,12 @@
             <div class="container">
                 <div class="form-group">
                     <div class="row">
-                        <input type="file" id="file" name="foto" onchange="return fileValidation()" />
+                        <input type="file" id="file" name="foto" required onchange="return fileValidation()" />
                         <div class="col-12">
 
                             <div id="imagePreview"></div><br>
                             <p>Ket.</p>
-                            <textarea name="ket" class="form-group" cols="90" rows="3"></textarea>
+                            <textarea name="ket" class="form-group" cols="90" rows="3" required></textarea>
 
 
                         </div>
@@ -132,12 +132,12 @@
             <div class="container">
                 <div class="form-group">
                     <div class="row">
-                        <input type="file" id="file" name="foto" onchange="return fileValidation()" />
+                        <input type="file" id="file" name="foto" required onchange="return fileValidation()" />
                         <div class="col-12">
 
                             <div id="imagePreview"></div><br>
                             <p>Ket.</p>
-                            <textarea name="ket" class="form-group" cols="90" rows="3"></textarea>
+                            <textarea name="ket" class="form-group" cols="90" rows="3" required></textarea>
 
 
                         </div>
@@ -179,12 +179,12 @@
             <div class="container">
                 <div class="form-group">
                     <div class="row">
-                        <input type="file" id="file" name="foto" onchange="return fileValidation()" />
+                        <input type="file" id="file" name="foto" required onchange="return fileValidation()" />
                         <div class="col-12">
 
                             <div id="imagePreview"></div><br>
                             <p>Ket.</p>
-                            <textarea name="ket" class="form-group" cols="90" rows="3"></textarea>
+                            <textarea name="ket" class="form-group" cols="90" rows="3" required></textarea>
 
 
                         </div>

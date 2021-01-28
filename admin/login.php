@@ -81,7 +81,7 @@ include('../koneksi.php')
                         	}
                         	else {
                         		echo "<br>";
-                        		echo "<div class='alert alert-danger'>Login Gagal</div>";
+                                echo "<div class='alert alert-danger'>Login Gagal</div>";
                         		echo "<meta http-equiv='refresh' content='1;url=login.php'>";
                         	}
                         }

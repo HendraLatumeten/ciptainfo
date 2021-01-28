@@ -145,11 +145,11 @@ $bukti3 = $ambil3->fetch_assoc();
                                         <form method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label>Nama Penyetor</label>
-                                                <input type="text" class="form-control" name="nama">
+                                                <input type="text" class="form-control" name="nama" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Bank</label>
-                                                <input type="text" class="form-control" name="bank">
+                                                <input type="text" class="form-control" name="bank" required>
                                             </div>
                                             <div class="form-group" data-toggle="tooltip" data-placement="left"
                                                 title="Jumlah Harus Sesuai!">
@@ -270,7 +270,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                         <form method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label>Nama Penyetor</label>
-                                                <input type="text" class="form-control" name="nama">
+                                                <input type="text" class="form-control" name="nama" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Bank</label>
