@@ -112,7 +112,7 @@
 
 <td>
 <a href="index.php?halaman=project" class="btn btn-info" title="kembali" rel="tooltip" >Kembali</a>
-<a href="index.php?halaman=report_data_pembelian&id=<?php echo $pecah['id_pembelian']; ?>" class="btn btn-primary" title="proses pengerjaan" rel="tooltip" >Print</a>
+<!--  -->
 </td>
 
 

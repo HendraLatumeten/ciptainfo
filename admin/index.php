@@ -341,6 +341,10 @@ if (!isset($_SESSION['admin'])) {
                         {
                             include 'nonaktif_mandor.php';
                         }
+                        elseif ($_GET['halaman']=="ulasan")
+                        {
+                            include 'ulasan.php';
+                        }
                     }
                     else 
                     {
@@ -858,7 +862,6 @@ if (!isset($_SESSION['admin'])) {
         </div>
     </div> -->
 
-   
 
 </body>
 

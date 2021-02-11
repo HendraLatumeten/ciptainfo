@@ -87,8 +87,9 @@
                     <div class="row">
                         <input type="file" id="file" name="foto" required onchange="return fileValidation()" />
                         <div class="col-12">
-
+                            
                             <div id="imagePreview"></div><br>
+
                             <p>Ket.</p>
                             <textarea name="ket" class="form-group" cols="90" rows="3" required></textarea>
 
@@ -218,7 +219,14 @@
                                     }
         ?>
     </div>
+<style>
+.imagePreview{
+    width: 500px !important;
+}
+ 
 
+
+</style>
     <script>
         function openCity(evt, cityName) {
             var i, tabcontent, tablinks;
@@ -251,7 +259,7 @@
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         document.getElementById('imagePreview').innerHTML = '<img src="' + e.target.result +
-                            '"/>';
+                            '"style="width:635px; height:200px"/> ';
                     };
                     reader.readAsDataURL(fileInput.files[0]);
                 }

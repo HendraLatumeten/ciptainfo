@@ -16,7 +16,7 @@ $mail->Port = 465;
 $mail->setFrom('hendrawyt34@gmail.com', 'CIPTA INFO');
 $mail->addAddress($_POST['email'], $_POST['nama']);
 $mail->isHTML(true);
-$mail->Subject = "Aktivasi pendaftaran Member";
+$mail->Subject = "CIPTA INFO 'Aktivasi Pelanggan'";
 $mail->Body = "Selemat, anda berhasil membuat akun di CIPTA INFO. Untuk mengaktifkan akun anda silahkan klik link dibawah ini.
  <a href='http://localhost/ciptainfo/activation.php?t=".$token."'>http://localhost/ciptainfo/activation.php?t=".$token."</a>  ";
 $mail->send();

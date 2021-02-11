@@ -109,10 +109,7 @@ $bayar = 15 / 100 * $harga;
 							class="btn btn-primary">Pengerjaan</a>
 						<? }else{?>
 
-						<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-							data-target="#myModal">Open Modal</button> -->
-							<a href="pengerjaan.php?id=<?php echo $pecah["id_pembelian"]?>"
-							class="btn btn-primary">Pengerjaan</a>
+						
 
 						<? }?>
 					</td>

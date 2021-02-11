@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 04, 2020 at 08:42 PM
+-- Generation Time: Feb 11, 2021 at 07:12 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -60,7 +60,12 @@ CREATE TABLE `data_kayu` (
 --
 
 INSERT INTO `data_kayu` (`id_kayu`, `nama_kayu`, `harga`, `satuan`, `stok`) VALUES
-(2, 'hendra', 1000000, 'm2', 200);
+(5, 'Kayu Jati', 5500000, 'm2', 20),
+(6, 'Kayu Merbau', 4000000, 'm2', 20),
+(7, 'Kayu Kamper', 3800000, 'm2', 20),
+(8, 'Kayu Bengkire', 3500000, 'm2', 20),
+(9, 'Kayu Akasia', 3000000, 'm2', 20),
+(10, 'Kayu Rimba Kalimantan', 2500000, 'm2', 20);
 
 -- --------------------------------------------------------
 
@@ -80,7 +85,7 @@ CREATE TABLE `detail_pembelian` (
   `id_kec` int(11) NOT NULL,
   `id_kel` bigint(20) NOT NULL,
   `lokasi` text NOT NULL,
-  `ongkir` bigint(20) NOT NULL
+  `ongkir` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -88,11 +93,11 @@ CREATE TABLE `detail_pembelian` (
 --
 
 INSERT INTO `detail_pembelian` (`id_detail_pembelian`, `id_pembelian`, `id_kayu`, `panjang`, `lebar`, `harga_kayu`, `id_prov`, `id_kab`, `id_kec`, `id_kel`, `lokasi`, `ongkir`) VALUES
-(23, 71, 2, 2, 3, 6000000, 34, 3402, 340201, 3402012001, 'vweewvv', 3000000),
-(24, 72, 2, 3, 4, 12000000, 36, 3601, 360125, 3601251002, 'erveve                ', 2000000),
-(25, 73, 2, 2, 2, 4000000, 34, 3403, 340307, 3403072001, 'sc', 3000000),
-(26, 74, 2, 2, 3, 6000000, 32, 3273, 327302, 3273021004, 'wwddew    ', 1000000),
-(27, 75, 2, 2, 3, 6000000, 34, 3402, 340217, 3402172001, 'wwc', 3000000);
+(66, 110, 4, 5, 6, 180000000, 34, 3401, 340112, 3401122002, 'jln mujair                ', '3000000'),
+(67, 111, 4, 8, 7, 336000000, 32, 3216, 321622, 3216222005, ' okee', '1000000'),
+(68, 113, 3, 5, 5, 250000000, 34, 3401, 340112, 3401122002, 'jln mujair', '3000000'),
+(69, 114, 5, 5, 5, 137500000, 36, 3604, 360405, 3604052010, 'jln mujair', '2000000'),
+(70, 115, 7, 5, 5, 95000000, 34, 3403, 340312, 3403122006, 'muncul', '3000000');
 
 -- --------------------------------------------------------
 
@@ -90341,9 +90346,11 @@ INSERT INTO `kelurahan` (`id_kel`, `id_kec`, `nama`, `id_jenis`) VALUES
 
 CREATE TABLE `mandor` (
   `id_mandor` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
   `tlpn` varchar(15) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(10) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -90351,54 +90358,9 @@ CREATE TABLE `mandor` (
 -- Dumping data for table `mandor`
 --
 
-INSERT INTO `mandor` (`id_mandor`, `username`, `password`, `tlpn`, `status`) VALUES
-(1, 'mandor', 'mandor', '082291654897', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mitra`
---
-
-CREATE TABLE `mitra` (
-  `id_mitra` int(11) NOT NULL,
-  `nama_mitra` varchar(25) NOT NULL,
-  `email_mitra` varchar(25) NOT NULL,
-  `password_mitra` varchar(25) NOT NULL,
-  `alamat_mitra` text NOT NULL,
-  `tlp_mitra` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mitra`
---
-
-INSERT INTO `mitra` (`id_mitra`, `nama_mitra`, `email_mitra`, `password_mitra`, `alamat_mitra`, `tlp_mitra`) VALUES
-(1, 'Asus Indonesia', 'supplier@asus.com', 'asus', 'jl.kebon mangga', '089922717272'),
-(2, 'Acer Indonesia', 'supplier@acer.com', 'acer', 'sebelah kantor asus', '08291171721'),
-(3, 'Razer', 'supplier@razer.com', 'razer', 'jl.kebayoran lama', '081726261728'),
-(4, 'MSI Indonesia', 'supplier@msi.com', 'msi', 'Jl.kebon sirih', '081727271625'),
-(5, 'Logitech', 'supplier@logitech.com', 'logitech', 'jl. Makmur', '081927171612');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ongkir`
---
-
-CREATE TABLE `ongkir` (
-  `id_ongkir` int(5) NOT NULL,
-  `nama_kota` varchar(100) NOT NULL,
-  `tarif` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ongkir`
---
-
-INSERT INTO `ongkir` (`id_ongkir`, `nama_kota`, `tarif`) VALUES
-(1, 'jakarta', 20000),
-(2, 'banten', 25000);
+INSERT INTO `mandor` (`id_mandor`, `nama`, `alamat`, `tlpn`, `username`, `password`, `status`) VALUES
+(1, 'hata', 'pamulang', '082291654897', 'mandor', 'mandor', 1),
+(2, 'rizky', 'BSD', '342442423', 'mandor21', 'mandor2', 0);
 
 -- --------------------------------------------------------
 
@@ -90415,7 +90377,7 @@ CREATE TABLE `pelanggan` (
   `alamat` text NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `token` varchar(100) NOT NULL,
   `aktif` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -90424,7 +90386,8 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `jk`, `tlp`, `pekerjaan`, `alamat`, `email`, `password`, `token`, `aktif`) VALUES
-(54, 'hendra', 'L', '082291654897', 'kontraktor', 'muncul', 'latumetenhendra@gmail.com', '8f5e300a5f1340a11ea67044f57bec3a', 'b0282f4e85332161e155eb5d34996ff4f0ae9a5434d78e9a5cb99ce3b424f140', 1);
+(57, 'hendra', 'L', '082291654897', 'programer', 'muncul', 'hendrawyt34@gmail.com', '8f5e300a5f1340a11ea67044f57bec3a', '5fa317f7c65b93e7d76abcd0046b3319df6f069a6996ec8f1449d38f2482fc26', 1),
+(60, 'anis', 'L', '082291654897', 'dsasad', 'dsasdsa', 'latumetenhendra@gmail.com', '8f5e300a5f1340a11ea67044f57bec3a', '4586da2723166bc253c95e9cf96f647cc88c588e32e5f7bd35cc59ba4b649634', 1);
 
 -- --------------------------------------------------------
 
@@ -90435,19 +90398,21 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `jk`, `tlp`, `pekerjaan`, `alam
 CREATE TABLE `pembayaran` (
   `id_pembayaran` int(11) NOT NULL,
   `id_pembelian` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `bank` varchar(255) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `bank` varchar(20) NOT NULL,
   `jumlah` bigint(20) NOT NULL,
   `tanggal` date NOT NULL,
-  `bukti` varchar(255) NOT NULL
+  `bukti` varchar(50) NOT NULL,
+  `tipe` int(1) NOT NULL,
+  `ket` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id_pembayaran`, `id_pembelian`, `nama`, `bank`, `jumlah`, `tanggal`, `bukti`) VALUES
-(18, 75, 'hendra', 'mandiri', 1485000, '2020-10-04', '20201004182002a.jpg');
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pembelian`, `nama`, `bank`, `jumlah`, `tanggal`, `bukti`, `tipe`, `ket`) VALUES
+(77, 115, 'hendra', 'mandiri', 16170000, '2021-02-10', '20210210064422step1.jpg', 1, '2');
 
 -- --------------------------------------------------------
 
@@ -90460,18 +90425,23 @@ CREATE TABLE `pembelian` (
   `id_produk` int(11) NOT NULL,
   `id_pelanggan` int(11) NOT NULL,
   `id_mandor` int(11) DEFAULT NULL,
+  `id_rating` int(11) DEFAULT NULL,
   `total_harga` bigint(20) NOT NULL,
   `tanggal_pembelian` varchar(10) NOT NULL,
-  `status_pembelian` int(3) NOT NULL,
-  `status_pengerjaan` int(3) DEFAULT NULL
+  `status_pembelian` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pembelian`
 --
 
-INSERT INTO `pembelian` (`id_pembelian`, `id_produk`, `id_pelanggan`, `id_mandor`, `total_harga`, `tanggal_pembelian`, `status_pembelian`, `status_pengerjaan`) VALUES
-(75, 78, 54, 1, 9900000, '04-10-2020', 2, NULL);
+INSERT INTO `pembelian` (`id_pembelian`, `id_produk`, `id_pelanggan`, `id_mandor`, `id_rating`, `total_harga`, `tanggal_pembelian`, `status_pembelian`) VALUES
+(110, 81, 57, 1, 6, 201300000, '23-01-2021', 3),
+(111, 81, 57, 1, NULL, 370700000, '24-01-2021', 1),
+(112, 81, 57, NULL, NULL, 0, '28-01-2021', 0),
+(113, 81, 57, NULL, NULL, 278300000, '28-01-2021', 2),
+(114, 83, 57, 1, NULL, 153450000, '09-02-2021', 2),
+(115, 83, 60, 1, 7, 107800000, '10-02-2021', 3);
 
 -- --------------------------------------------------------
 
@@ -90480,9 +90450,9 @@ INSERT INTO `pembelian` (`id_pembelian`, `id_produk`, `id_pelanggan`, `id_mandor
 --
 
 CREATE TABLE `produk` (
-  `id_produk` int(100) NOT NULL,
-  `nama_produk` varchar(255) NOT NULL,
-  `kategori_produk` varchar(25) NOT NULL,
+  `id_produk` int(11) NOT NULL,
+  `nama_produk` varchar(50) NOT NULL,
+  `kategori_produk` varchar(50) NOT NULL,
   `deskripsi_produk` text NOT NULL,
   `foto_produk` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -90492,8 +90462,35 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `kategori_produk`, `deskripsi_produk`, `foto_produk`) VALUES
-(77, 'hendra', 'Kayu', '									ewfwef						', 'AlbumArt_{B5020207-474E-4720-9FAE-CC18D1D13D00}_Small.jpg'),
-(78, 'jati', 'Kayu', 'wde', 'ky6.jpg');
+(83, 'knockdown', 'Kayu', 'Tipe knockdown', 'WhatsApp Image 2021-02-08 at 8.08.56 PM.jpeg'),
+(84, 'knwxsw', 'Kayu', 'wsxxswxsw', 'step3.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `progres`
+--
+
+CREATE TABLE `progres` (
+  `id_progres` int(11) NOT NULL,
+  `id_pembelian` int(11) NOT NULL,
+  `ket` text DEFAULT NULL,
+  `foto` varchar(50) NOT NULL,
+  `step1` tinyint(1) DEFAULT NULL,
+  `step2` tinyint(1) DEFAULT NULL,
+  `step3` tinyint(1) DEFAULT NULL,
+  `presentase` varchar(3) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `progres`
+--
+
+INSERT INTO `progres` (`id_progres`, `id_pembelian`, `ket`, `foto`, `step1`, `step2`, `step3`, `presentase`, `date`) VALUES
+(129, 115, 'step1', 'step1_20210210073508step1.jpg', 1, NULL, NULL, '15', '2021-02-10'),
+(130, 115, 'step2', 'step2_20210210073525step2.jpg', NULL, 1, NULL, '50', '2021-02-10'),
+(131, 115, 'step3', 'step3_20210210073605step3.jpg', NULL, NULL, 1, '35', '2021-02-10');
 
 -- --------------------------------------------------------
 
@@ -90517,6 +90514,30 @@ INSERT INTO `provinsi` (`id_prov`, `nama`) VALUES
 ('34', 'DI Yogyakarta'),
 ('35', 'Jawa Timur'),
 ('36', 'Banten');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id_rating` int(11) NOT NULL,
+  `id_pembelian` int(11) NOT NULL,
+  `ulasan` text NOT NULL,
+  `rate` tinyint(1) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id_rating`, `id_pembelian`, `ulasan`, `rate`, `date`) VALUES
+(4, 105, 'okee', 2, '2020-12-05'),
+(5, 107, 'mantap', 5, '2020-12-05'),
+(6, 110, 'mantap', 4, '2021-01-23'),
+(7, 115, 'okeeeia', 2, '2021-02-10');
 
 --
 -- Indexes for dumped tables
@@ -90565,18 +90586,6 @@ ALTER TABLE `mandor`
   ADD PRIMARY KEY (`id_mandor`);
 
 --
--- Indexes for table `mitra`
---
-ALTER TABLE `mitra`
-  ADD PRIMARY KEY (`id_mitra`);
-
---
--- Indexes for table `ongkir`
---
-ALTER TABLE `ongkir`
-  ADD PRIMARY KEY (`id_ongkir`);
-
---
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
@@ -90601,10 +90610,22 @@ ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
 
 --
+-- Indexes for table `progres`
+--
+ALTER TABLE `progres`
+  ADD PRIMARY KEY (`id_progres`);
+
+--
 -- Indexes for table `provinsi`
 --
 ALTER TABLE `provinsi`
   ADD PRIMARY KEY (`id_prov`) USING BTREE;
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id_rating`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -90620,55 +90641,55 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `data_kayu`
 --
 ALTER TABLE `data_kayu`
-  MODIFY `id_kayu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kayu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
-  MODIFY `id_detail_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_detail_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `mandor`
 --
 ALTER TABLE `mandor`
-  MODIFY `id_mandor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `mitra`
---
-ALTER TABLE `mitra`
-  MODIFY `id_mitra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `ongkir`
---
-ALTER TABLE `ongkir`
-  MODIFY `id_ongkir` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_mandor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+
+--
+-- AUTO_INCREMENT for table `progres`
+--
+ALTER TABLE `progres`
+  MODIFY `id_progres` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -186,7 +186,7 @@ $jsArray = "var hrg_brg = new Array();\n";
                 </thead>
                 <tbody>
                     <?
-                $rating= $koneksi->query("SELECT nama,rate,ulasan,tanggal_pembelian FROM pembelian AS a JOIN pelanggan AS b ON a.id_pelanggan=b.id_pelanggan JOIN rating AS c ON a.id_rating=c.id_rating WHERE a.id_produk='81'");
+                $rating= $koneksi->query("SELECT nama,rate,ulasan,tanggal_pembelian FROM pembelian AS a JOIN pelanggan AS b ON a.id_pelanggan=b.id_pelanggan JOIN rating AS c ON a.id_rating=c.id_rating WHERE a.id_produk=$id_produk");
                 while ($pecah=$rating->fetch_assoc()) {?>
                     <?
                 
