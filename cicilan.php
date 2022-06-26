@@ -76,7 +76,7 @@ $bukti3 = $ambil3->fetch_assoc();
                             <div class="container">
                                 <h3 class="display-4">Pembayaran Pertama</h3>
                                 <p class="lead">
-                             <?   if ($bukti1['tipe'] == '1' AND $bukti1['ket'] > '0') {?>
+                             <?   if (isset($bukti1['tipe']) == '1' AND isset($bukti1['ket']) > '0') {?>
                                     <table class="table">
                                         <tr>
                                             <td>Nama Transfer</td>
@@ -201,7 +201,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                 <h3 class="display-4">Pembayaran Kedua</h3>
                                 <p class="lead">
                                     <?
-                            if ($bukti2['tipe'] == '2' AND $bukti2['ket'] > '0') {?>
+                            if (isset($bukti2['tipe']) == '2' AND isset($bukti2['ket']) > '0') {?>
                                     <table class="table">
                                         <tr>
                                             <td>Nama Transfer</td>
@@ -326,7 +326,7 @@ $bukti3 = $ambil3->fetch_assoc();
                                 <h3 class="display-4">Pembayaran Ketiga</h3>
                                 <p class="lead">
                                     <?
-                            if ($bukti3['tipe'] == '3' AND $bukti3['ket'] > '0') {
+                            if ( isset($bukti3['tipe']) == '3' AND isset($bukti3['ket']) > '0') {
                              
                                 ?>
                                     <table class="table">

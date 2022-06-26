@@ -80,7 +80,7 @@
 
     <div id="Step1" class="tabcontent">
         <h3>15%</h3>
-        <?if ($progresA['step1'] == NULL) {?>
+        <?if (isset($progresA['step1']) == NULL) {?>
         <form method="post" enctype="multipart/form-data">
             <div class="container">
                 <div class="form-group">
@@ -128,7 +128,7 @@
 
     <div id="Step2" class="tabcontent">
         <h3>50%</h3>
-        <?if ($progresB['step2'] == NULL) {?>
+        <?if (isset($progresB['step2']) == NULL) {?>
         <form method="post" enctype="multipart/form-data">
             <div class="container">
                 <div class="form-group">
@@ -175,7 +175,7 @@
 
     <div id="Step3" class="tabcontent">
         <h3>35%</h3>
-        <?if ($progresC['step3'] == NULL) {?>
+        <?if (isset($progresC['step3']) == NULL) {?>
         <form method="post" enctype="multipart/form-data">
             <div class="container">
                 <div class="form-group">

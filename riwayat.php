@@ -28,7 +28,7 @@ $id = $_SESSION["pelanggan"]["id_pelanggan"];
 
 $ambil = $koneksi->query ("SELECT * FROM pembelian WHERE pembelian.id_pembelian='$id'");
 $detail = $ambil->fetch_assoc();
-$harga = $detail['total_harga'];
+$harga = isset($detail['total_harga']);
 $bayar = 15 / 100 * $harga;
 
 ?>

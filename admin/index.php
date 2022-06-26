@@ -121,7 +121,8 @@ if (!isset($_SESSION['admin'])) {
                             $beli = $beli1->num_rows;
                             ?>
                             <p>Pembelian
-                                <span class="badge" style="color:red; font-size: large;"><?php echo $beli; ?></span>
+                                <span class="badge badge-warning"
+                                    style="color:red; font-size: large; bg-color:red;"><?php echo $beli; ?></span>
                             </p>
 
 
@@ -185,7 +186,7 @@ if (!isset($_SESSION['admin'])) {
 
                         </a>
 
-                   
+
                 </ul>
             </div>
         </div>

@@ -171,7 +171,7 @@ $finish = $finish1->fetch_assoc();
 							<? 
 							$ket11 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1 AND ket=1 AND id_pembelian='$_GET[id]'");
 							$ket1 = $ket11->fetch_assoc();
-							if ($ket1['tipe'] == 1 AND $ket1['ket'] == 1 ) { ?>
+							if (isset($ket1['tipe']) == 1 AND isset($ket1['ket']) == 1 ) { ?>
 
 							<td><?php echo rupiah($ket1['jumlah']) ?></td>
 							<td>
@@ -188,16 +188,20 @@ $finish = $finish1->fetch_assoc();
 							</td>
 							<? } ?>
 
-<?
-$ket111 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1 AND ket=2 AND id_pembelian='$_GET[id]'");
-$ket11 = $ket111->fetch_assoc();
-?>
-							<?if($ket11['tipe'] == 1 AND $ket11['ket'] == 2 ){?>
-							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
-							<?}else if($ket11['tipe'] == 1 AND $ket11['ket'] == 0){?>
+								<?
+								$ket111 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =1 AND ket=2 AND id_pembelian='$_GET[id]'");
+								$ket11 = $ket111->fetch_assoc();
+								
+								?>
+							<?php
+							if(isset($ket11['tipe']) == 1 AND isset($ket11['ket']) == 2 ){?>
+							<td><i>Pembayaran Sudah TerVerifikasi</i> &nbsp; &nbsp;<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#exampleModal">Detail</button></td>
+							
+							<?}else if(isset($ket11['tipe']) == 1 AND isset($ket11['ket']) == 0){?>
 							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
 									Dibatalkan</i></td>
-						
+
 							<?}?>
 						</tr>
 						<!-- pembayaran2 -->
@@ -207,7 +211,7 @@ $ket11 = $ket111->fetch_assoc();
 							<? 
 							$ket22 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =2 AND ket=1 AND id_pembelian='$_GET[id]'");
 							$ket2 = $ket22->fetch_assoc();
-							if ($ket2['tipe'] == 2 AND $ket2['ket'] == 1  ) { ?>
+							if (isset($ket2['tipe']) == 2 AND isset($ket2['ket']) == 1  ) { ?>
 							<td><?php echo rupiah($ket2['jumlah']) ?></td>
 							<td>
 								<!-- Button trigger modal -->
@@ -224,9 +228,9 @@ $ket11 = $ket111->fetch_assoc();
 $ket222 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =2 AND ket=2 AND id_pembelian='$_GET[id]'");
 $ket22 = $ket222->fetch_assoc();
 ?>
-							<?if($ket22['tipe'] == 2 AND $ket22['ket'] == 2 ){?>
+							<?if(isset($ket22['tipe']) == 2 AND isset($ket22['ket']) == 2 ){?>
 							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
-							<?}else if($ket22['tipe'] == 2 AND $ket22['ket'] == 0){?>
+							<?}else if(isset($ket22['tipe']) == 2 AND isset($ket22['ket']) == 0){?>
 							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
 									Dibatalkan</i></td>
 							<?}?>
@@ -239,7 +243,7 @@ $ket22 = $ket222->fetch_assoc();
 							$ket33= $koneksi->query("SELECT * FROM pembayaran WHERE tipe =3 AND ket=1 AND id_pembelian='$_GET[id]'");
 							$ket3 = $ket33->fetch_assoc();
 
-							if ($ket3['tipe'] == 3 AND $ket3['ket'] == 1 ) { 
+							if (isset($ket3['tipe']) == 3 AND isset($ket3['ket']) == 1 ) { 
 							?>
 
 							<td><?php echo rupiah($ket3['jumlah']) ?></td>
@@ -258,9 +262,9 @@ $ket22 = $ket222->fetch_assoc();
 $ket333 = $koneksi->query("SELECT * FROM pembayaran WHERE tipe =3 AND ket=2 AND id_pembelian='$_GET[id]'");
 $ket33 = $ket333->fetch_assoc();
 ?>
-							<?if($ket33['tipe'] == 3 AND $ket33['ket'] == 2 ){?>
+							<?if(isset($ket33['tipe']) == 3 AND isset($ket33['ket']) == 2 ){?>
 							<td><i>Pembayaran Sudah TerVerifikasi</i></td>
-							<?}else if($ket33['tipe'] == 3 AND $ket33['ket'] == 0){?>
+							<?}else if(isset($ket33['tipe']) == 3 AND isset($ket33['ket']) == 0){?>
 							<td><i>Harap Untuk Menghubungi Pembeli Untuk Melanjutkan Pembayaran Yang Telah
 									Dibatalkan</i></td>
 							<?}?>
@@ -407,45 +411,61 @@ $ket33 = $ket333->fetch_assoc();
    $progres3=$koneksi->query("SELECT * FROM progres WHERE id_pembelian='$_GET[id]' AND step3='1' ");
    $progresC = $progres3->fetch_assoc();  
 
-   $a = $progresA['presentase'] + $progresB['presentase'] + $progresC['presentase'] ;  
- 
    
+if(isset ($progresA['presentase']) == !NULL) { 
+   $a = $progresA['presentase'];  
+ }
+ if(isset ($progresB['presentase']) == !NULL) { 
+	$b = $progresB['presentase'];  
+	
+}
+if(isset ($progresC['presentase']) == !NULL) { 
+	$c = $progresC['presentase'] ; 
+	 
+  }
 
-?>
+ 
+	$hasil = @$a + @$b + @$c;
+
+  
+ 
+ ?> 
+
+
 	<div class="tab-pane fade" id="pills-pengerjaan" role="tabpanel" aria-labelledby="pills-pengerjaan-tab">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h3 class="display-4"><b>Pengerjaan(%)</b></h3>
 				<p class="lead">
 					<div class="progress">
-						<div class="progress-bar" role="progressbar" style="width: <? echo $a; ?>%;" aria-valuenow="25"
+						<div class="progress-bar" role="progressbar" style="width: <? echo $hasil; ?>%;" aria-valuenow="25"
 							aria-valuemin="0" aria-valuemax="100">
-							<? echo $a; ?>%
+							<? echo $hasil; ?>%
 						</div>
 					</div>
 					<!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#progresModal">
 			Lihat
 		</button> -->
 					<div class="tab">
-						<?if($progresA['step1'] == !NULL){?>
+						<?if(isset($progresA['step1']) == !NULL){?>
 						<button class="tablinks" onclick="openCity(event, 'Step1')" id="defaultOpen">Step1(15%)</button>
 						<?}else{?>
-						<p><i>Step1(15%) belum dilakukan</i></p>
+						<p><i>Step1 (15%) belum dilakukan</i></p>
 						<?}?>
 
-						<?if($progresB['step2'] == !NULL){?>
+						<?if(isset($progresB['step2']) == !NULL){?>
 						<button class="tablinks" onclick="openCity(event, 'Step2')">Step2(50%)</button>
 						<?}else{?>
-						<p><i>Step2(50%) belum dilakukan</i></p>
+						<p><i>Step2 (50%) belum dilakukan</i></p>
 						<?}?>
 
-						<?if($progresC['step3'] == !NULL){?>
+						<?if(isset($progresC['step3']) == !NULL){?>
 						<button class="tablinks" onclick="openCity(event, 'Step3')">Step3(35%)</button>
 						<?}else{?>
-						<p><i>Step2(35%) belum dilakukan</i></p>
+						<p><i>Step2 (35%) belum dilakukan</i></p>
 						<?}?>
 
-						<?if($progresA['step1'] == '1' AND $progresB['step2'] == '1' AND $progresC['step3'] == '1' ){?>
+						<?if(isset($progresA['step1']) == '1' AND isset($progresB['step2']) == '1' AND isset($progresC['step3']) == '1' ){?>
 						<form action="" method="post">
 							<button type="submit" name="finish" class="btn btn-primary">Finish</button>
 						</form>
@@ -458,102 +478,104 @@ $ket33 = $ket333->fetch_assoc();
 							echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=pembelian'>";
 						} ?>
 					</div>
-
+					<?php if (isset($progresA['foto']) == !NULL) {?>
 					<div id="Step1" class="tabcontent">
 						<p>Bukti :</p>
 						<img id="" src="../bukti_pengerjaan/<?php echo $progresA['foto']; ?>" width="300px">
-						<p><?php echo $progresA['ket']; ?></p>
+						<p><?php echo @$progresA['ket']; ?></p>
 					</div>
-
-
+					<?}?>
+					<?php if (isset($progresB['foto']) == !NULL) {?>
 					<div id="Step2" class="tabcontent">
 						<p>Bukti :</p>
 						<img id="" src="../bukti_pengerjaan/<?php echo $progresB['foto']; ?>" width="300px">
-						<p><?php echo $progresB['ket']; ?></p>
+						<p><?php echo @$progresB['ket']; ?></p>
 					</div>
-
-
+					<?}?>
+					<?php if (isset($progresC['foto']) == !NULL) {?>
 					<div id="Step3" class="tabcontent">
 						<p>Bukti :</p>
 						<img id="" src="../bukti_pengerjaan/<?php echo $progresC['foto']; ?>" width="300px">
-						<p><?php echo $progresC['ket']; ?></p>
+						<p><?php echo @$progresC['ket']; ?></p>
 					</div>
+					<?}?>
+						
 				</p>
 			</div>
 		</div>
 	</div>
 
 	<script>
-						function openCity(evt, cityName) {
-							var i, tabcontent, tablinks;
-							tabcontent = document.getElementsByClassName("tabcontent");
-							for (i = 0; i < tabcontent.length; i++) {
-								tabcontent[i].style.display = "none";
-							}
-							tablinks = document.getElementsByClassName("tablinks");
-							for (i = 0; i < tablinks.length; i++) {
-								tablinks[i].className = tablinks[i].className.replace(" active", "");
-							}
-							document.getElementById(cityName).style.display = "block";
-							evt.currentTarget.className += " active";
-						}
+		function openCity(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
 
-						// Get the element with id="defaultOpen" and click on it
-						document.getElementById("defaultOpen").click();
-					</script>
-					<style>
-						* {
-							box-sizing: border-box
-						}
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+	</script>
+	<style>
+		* {
+			box-sizing: border-box
+		}
 
-						body {
-							font-family: "Lato", sans-serif;
-						}
+		body {
+			font-family: "Lato", sans-serif;
+		}
 
-						/* Style the tab */
-						.tab {
-							float: left;
-							border: 1px solid #ccc;
-							background-color: #f1f1f1;
-							width: 40%;
-							height: 500px;
-						}
+		/* Style the tab */
+		.tab {
+			float: left;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+			width: 40%;
+			height: 500px;
+		}
 
-						/* Style the buttons inside the tab */
-						.tab button {
-							display: block;
-							background-color: inherit;
-							color: black;
-							padding: 22px 16px;
-							width: 100%;
-							border: none;
-							outline: none;
-							text-align: left;
-							cursor: pointer;
-							transition: 0.3s;
-							font-size: 17px;
-						}
+		/* Style the buttons inside the tab */
+		.tab button {
+			display: block;
+			background-color: inherit;
+			color: black;
+			padding: 22px 16px;
+			width: 100%;
+			border: none;
+			outline: none;
+			text-align: left;
+			cursor: pointer;
+			transition: 0.3s;
+			font-size: 17px;
+		}
 
-						/* Change background color of buttons on hover */
-						.tab button:hover {
-							background-color: #ddd;
-						}
+		/* Change background color of buttons on hover */
+		.tab button:hover {
+			background-color: #ddd;
+		}
 
-						/* Create an active/current "tab button" class */
-						.tab button.active {
-							background-color: #ccc;
-						}
+		/* Create an active/current "tab button" class */
+		.tab button.active {
+			background-color: #ccc;
+		}
 
-						/* Style the tab content */
-						.tabcontent {
-							float: left;
-							padding: 0px 12px;
-							border: 1px solid #ccc;
-							width: 60%;
-							border-left: none;
-							height: 500px;
-						}
-					</style>
+		/* Style the tab content */
+		.tabcontent {
+			float: left;
+			padding: 0px 12px;
+			border: 1px solid #ccc;
+			width: 60%;
+			border-left: none;
+			height: 500px;
+		}
+	</style>
 
 
 </div>

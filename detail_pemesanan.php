@@ -76,6 +76,7 @@ $jsArray = "var hrg_brg = new Array();\n";
                                 <b>Lebar</b><input type="number" id="lebar" name="lebar" class="form-control">
                              </div>
                         </div>
+                        
                     </div>
                     <br>
                     <input type='button' class='btn-primary center-block' name='' onclick= hitung(); value='Cek Harga' >
@@ -131,16 +132,25 @@ $jsArray = "var hrg_brg = new Array();\n";
 			</div>
                 </div>
             </div>
-         
+            <button class="btn btn-success" name="beli">Selanjutnya  
+            <img src="img/right.png" alt="" style="width: 30px;">
+            </button>
+          
             <br>
             <br>
             <br>              
             </div>
+            
             </div><br>
         </div>
     </div>
 </section>
-<button class="btn btn-success" name="beli">Beli</button>
+<div class="container">
+                <div class="row">
+                 
+                </div>
+</div>
+
             </form>
 <?php 
 

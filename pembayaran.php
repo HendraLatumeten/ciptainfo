@@ -49,11 +49,12 @@ $bayar = 15 / 100 * $harga;
 	<div class="alert alert-success"><h3>Tagihan Anda <strong><?php echo rupiah($bayar)?></strong>
 		<strong> || BANK BCA 124-020201-2121 CIPTA INFO</strong></h3>
 	</div>
-	<?
+	<?php
 	$ambil1 = $koneksi->query("SELECT * FROM pembayaran JOIN pembelian ON pembayaran.id_pembelian=pembelian.id_pembelian WHERE pembayaran.id_pembelian='$_GET[id]' AND ket='0'");
 	$bukti1 = $ambil1->fetch_assoc();
-	$a = $bukti1['total_harga'];
-	$b = $bukti1['jumlah']; 
+	
+	$a = isset($bukti1['total_harga']);
+	$b = isset($bukti1['jumlah']); 
 	$bayar = 15 / 100 * $a;
 	
 		if ($bayar != $b) {?>
@@ -63,7 +64,7 @@ $bayar = 15 / 100 * $harga;
 				data-target="#verifikasiModal">Cek Kesalahan Pembayaran</button>
 				</strong>
 			</div>
-	<?	}
+	<?php	}
 	?>
 	<div class="modal fade" id="verifikasiModal" tabindex="-1" role="dialog" aria-labelledby="verifikasiModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
