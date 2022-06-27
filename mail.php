@@ -5,11 +5,11 @@ require "vendor/autoload.php";
 $mail = new PHPMailer(true);
 $mail->SMTPDebug = 0;
 $mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'ssl://smtp.gmail.com';
 $mail->SMTPAuth = true;
 //ganti dengan email dan password yang akan di gunakan sebagai email pengirim
 $mail->Username = 'hendrawyt34@gmail.com';
-$mail->Password = 'rhawchjkjqbfhwcw';
+$mail->Password = 'yvabhflofpkagjtn';
 $mail->SMTPSecure = 'ssl';
 $mail->Port = 465;
 //ganti dengan email yg akan di gunakan sebagai email pengirim
