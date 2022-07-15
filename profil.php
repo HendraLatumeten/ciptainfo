@@ -2,52 +2,60 @@
 
 include "header.php";
 include "menu.php";
-?>	
+?>
 
 <?php
 
-if(!isset($_SESSION["pelanggan"])) {
-        
-    } 
-    ?>
+if (!isset($_SESSION["pelanggan"])) {
+}
+?>
 
 <div id="page-title">
 
-		<div id="page-title-inner">
+    <div id="page-title-inner">
 
-			<!-- start: Container -->
-			<div class="container">
+        <!-- start: Container -->
+        <div class="container">
 
-				<h2><i class="ico-stats ico-white"></i>Profil</h2>
+            <h2><i class="ico-stats ico-white"></i>Profil</h2>
 
-			</div>
-			<!-- end: Container  -->
+        </div>
+        <!-- end: Container  -->
 
-		</div>	
+    </div>
 
-	</div>
-	<!-- end: Page Title -->
+</div>
+<!-- end: Page Title -->
 
 
 <div id="wrapper">
     <div class="container">
-      	<div class="row">
+        <div class="row">
             <form name="form1" method="post" action="registrasi.php">
-        	   <tr>
+                <tr>
                     <td></td>
-                    <td><h3>Nama : <?php echo ($_SESSION["pelanggan"]['nama']);?></h3></td>
+                    <td>
+                        <h3>Nama : <?php echo ($_SESSION["pelanggan"]['nama']); ?></h3>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><h3>Email : <?php echo ($_SESSION["pelanggan"]['email']);?></h3></td>
+
+                    <td>
+                        <h3>Email : <?php echo ($_SESSION["pelanggan"]['email']); ?></h3>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
-                     <td><h3>Alamat : <?php echo ($_SESSION["pelanggan"]['alamat']);?></h3></td>
+                    <td>
+                        <h3>Alamat : <?php echo ($_SESSION["pelanggan"]['alamat']); ?></h3>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><h3>No Telepon : <?php echo ($_SESSION["pelanggan"]['tlp']);?></h3></td>
+                    <td>
+                        <h3>No Telepon : <?php echo ($_SESSION["pelanggan"]['tlp']); ?></h3>
+                    </td>
                 </tr>
             </form>
         </div>
@@ -56,6 +64,6 @@ if(!isset($_SESSION["pelanggan"])) {
 
 
 
-<?php 
+<?php
 include "footer.php";
- ?>
+?>
